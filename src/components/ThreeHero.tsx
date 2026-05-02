@@ -1,0 +1,56 @@
+import { Canvas, useFrame } from '@react-three/fiber';
+import { OrbitControls, Float, MeshDistortMaterial, Sphere, MeshWobbleMaterial } from '@react-three/drei';
+import { useRef } from 'react';
+import * as THREE from 'three';
+
+const AnimatedShape = () => {
+  const meshRef = useRef<THREE.Mesh>(null);
+
+  useFrame((state) => {
+    if (!meshRef.current) return;
+    meshRef.current.rotation.x = state.clock.getElapsedTime() * 0.2;
+    meshRef.current.rotation.y = state.clock.getElapsedTime() * 0.3;
+  });
+
+  return (
+    <Float speed={2} rotationIntensity={1} floatIntensity={1}>
+      <Sphere ref={meshRef} args={[1, 64, 64]}>
+        <MeshDistortMaterial
+          color="#0084ff"
+          attach="material"
+          distort={0.5}
+          speed={3}
+          roughness={0.2}
+          metalness={0.8}
+        />
+      </Sphere>
+      <Sphere args={[1.3, 64, 64]}>
+        <MeshWobbleMaterial
+          color="#001a33"
+          attach="material"
+          factor={0.6}
+          speed={2}
+          transparent
+          opacity={0.4}
+          wireframe
+        />
+      </Sphere>
+    </Float>
+  );
+};
+
+const ThreeHero = () => {
+  return (
+    <div style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, zIndex: 0 }}>
+      <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
+        <ambientLight intensity={0.2} />
+        <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={2} color="#0084ff" />
+        <pointLight position={[-10, -10, -10]} intensity={1} color="#001a33" />
+        <AnimatedShape />
+        <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={1} />
+      </Canvas>
+    </div>
+  );
+};
+
+export default ThreeHero;

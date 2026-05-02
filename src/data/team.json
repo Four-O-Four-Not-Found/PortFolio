@@ -1,0 +1,42 @@
+[
+  {
+    "id": "dev1",
+    "name": "Member 1",
+    "role": "Frontend Architect",
+    "bio": "Specializes in creating immersive web experiences and complex UI architectures. Expert in React and 3D web rendering.",
+    "skills": ["React", "Three.js", "Framer Motion", "TypeScript"],
+    "github": "#",
+    "linkedin": "#",
+    "avatar": "/team/dev1.jpg"
+  },
+  {
+    "id": "dev2",
+    "name": "Member 2",
+    "role": "Backend Specialist",
+    "bio": "Focused on scalable APIs, authentication systems, and cloud infrastructure. Passionate about system performance.",
+    "skills": [".NET Core", "FastAPI", "PostgreSQL", "Azure"],
+    "github": "#",
+    "linkedin": "#",
+    "avatar": "/team/dev2.jpg"
+  },
+  {
+    "id": "dev3",
+    "name": "Member 3",
+    "role": "Database & Security",
+    "bio": "Ensuring data integrity and robust security protocols. Expert in database optimization and financial logic.",
+    "skills": ["SQL Server", "Supabase", "Redis", "OAuth"],
+    "github": "#",
+    "linkedin": "#",
+    "avatar": "/team/dev3.jpg"
+  },
+  {
+    "id": "dev4",
+    "name": "Member 4",
+    "role": "Mobile & UI/UX",
+    "bio": "Bridging the gap between design and functionality. Expert in cross-platform mobile development and intuitive UX.",
+    "skills": ["React Native", "Flutter", "Figma", "UI Design"],
+    "github": "#",
+    "linkedin": "#",
+    "avatar": "/team/dev4.jpg"
+  }
+]

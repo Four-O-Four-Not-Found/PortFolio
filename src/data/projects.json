@@ -1,0 +1,78 @@
+[
+  {
+    "id": "evissa",
+    "title": "Evissa",
+    "description": "A comprehensive HOA management system that handles payments, reservations, identity signups, and financial reporting.",
+    "longDescription": "Evissa is designed to streamline Homeowners Association activities. It features a robust payment gateway, a booking system for common areas, identity verification for residents, and automated financial status exports. The platform also handles voucher requests and all administrative HOA tasks in one centralized location.",
+    "techStack": ["React", ".NET Core", "SQL Server", "Azure"],
+    "team": ["Member 1", "Member 2", "Member 3", "Member 4"],
+    "contributions": {
+      "Member 1": "Frontend Architecture & Payment Integration",
+      "Member 2": "Identity Service & Signups",
+      "Member 3": "Database Design & Financial Reporting",
+      "Member 4": "Reservations System & UI/UX"
+    },
+    "links": {
+      "live": "#",
+      "github": "#"
+    },
+    "image": "/projects/evissa-preview.png"
+  },
+  {
+    "id": "erp-hardware",
+    "title": "ERP Hardware System",
+    "description": "Specific hardware shop ERP with POS, inventory management, and multi-role dashboards.",
+    "longDescription": "A multi-faceted ERP system tailored for hardware retail. Includes a POS terminal for cashiers, an owner's dashboard for financial and inventory oversight, and a warehouse manager view for restocking and delivery tracking. It also features a driver app for navigation and delivery management.",
+    "techStack": ["React Native", "FastAPI", "PostgreSQL", "Google Maps API"],
+    "team": ["Member 1", "Member 2", "Member 3", "Member 4"],
+    "contributions": {
+      "Member 1": "Mobile Driver App & Navigation",
+      "Member 2": "POS Terminal & Real-time Sync",
+      "Member 3": "Inventory Logic & Warehouse APIs",
+      "Member 4": "Admin Dashboard & Financial Analytics"
+    },
+    "links": {
+      "live": "#",
+      "github": "#"
+    },
+    "image": "/projects/erp-preview.png"
+  },
+  {
+    "id": "alpha-interior",
+    "title": "Alpha Interior",
+    "description": "Portfolio page for a Bahrain-based workshop showcasing skills, artistry, and inquiry management.",
+    "longDescription": "A visual-heavy portfolio for Alpha Interior, a workshop in Bahrain. The site focuses on high-quality gallery presentations of their craftsmanship and an integrated inquiry system that routes potential client requests directly to the administration for quoting.",
+    "techStack": ["Vite", "Framer Motion", "EmailJS"],
+    "team": ["Member 1", "Member 2", "Member 3", "Member 4"],
+    "contributions": {
+      "Member 1": "Visual Layout & Animations",
+      "Member 2": "Gallery Implementation",
+      "Member 3": "Inquiry Form Logic",
+      "Member 4": "Asset Optimization"
+    },
+    "links": {
+      "live": "#",
+      "github": "#"
+    },
+    "image": "/projects/alpha-preview.png"
+  },
+  {
+    "id": "flowstate",
+    "title": "FlowState",
+    "description": "Project management system for developers with Git integration and collaborative tracking.",
+    "longDescription": "FlowState aids developer collaboration with a user-friendly UI for task tracking. It integrates directly with GitHub, allowing teams to manage organizations, repositories, and branches through CRUD operations within the app itself.",
+    "techStack": ["Next.js", "GitHub API", "Tailwind CSS", "Supabase"],
+    "team": ["Member 1", "Member 2", "Member 3", "Member 4"],
+    "contributions": {
+      "Member 1": "GitHub API Integration",
+      "Member 2": "Task Management UI",
+      "Member 3": "Auth & Organization Logic",
+      "Member 4": "Data Persistence & State"
+    },
+    "links": {
+      "live": "#",
+      "github": "#"
+    },
+    "image": "/projects/flowstate-preview.png"
+  }
+]

@@ -106,11 +106,11 @@ const Contact = () => {
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Full Name</label>
-                  <input name="user_name" type="text" placeholder="John Doe" required style={{ width: '100%', background: 'rgba(255,255,255,0.05)', border: '1px solid var(--card-border)', padding: '12px', borderRadius: '8px', color: 'white' }} />
+                  <input name="user_name" type="text" placeholder="John Doe" required className="themed-input" />
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Email Address</label>
-                  <input name="user_email" type="email" placeholder="john@example.com" required style={{ width: '100%', background: 'rgba(255,255,255,0.05)', border: '1px solid var(--card-border)', padding: '12px', borderRadius: '8px', color: 'white' }} />
+                  <input name="user_email" type="email" placeholder="john@example.com" required className="themed-input" />
                 </div>
               </div>
 
@@ -118,26 +118,41 @@ const Contact = () => {
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                     <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Preferred Date</label>
-                    <input name="date" type="date" required style={{ width: '100%', background: 'rgba(255,255,255,0.05)', border: '1px solid var(--card-border)', padding: '12px', borderRadius: '8px', color: 'white', colorScheme: 'dark' }} />
+                    <input name="date" type="date" required className="themed-input" style={{ colorScheme: 'dark' }} />
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                     <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Preferred Time</label>
-                    <input name="time" type="time" required style={{ width: '100%', background: 'rgba(255,255,255,0.05)', border: '1px solid var(--card-border)', padding: '12px', borderRadius: '8px', color: 'white', colorScheme: 'dark' }} />
+                    <input name="time" type="time" required className="themed-input" style={{ colorScheme: 'dark' }} />
                   </div>
                 </div>
               )}
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Service Type</label>
-                <select name="service" style={{ width: '100%', background: 'rgba(255,255,255,0.05)', border: '1px solid var(--card-border)', padding: '12px', borderRadius: '8px', color: 'white', cursor: 'pointer' }}>
-                  <option value="consultation">Free Consultation</option>
-                  <option value="development">System Development</option>
-                  <option value="tutoring">Technical Tutoring</option>
-                  <option value="general">General Collaboration</option>
+                <select 
+                  name="service" 
+                  className="themed-select"
+                  style={{ 
+                    width: '100%', 
+                    maxWidth: '100%',
+                    background: 'var(--card-bg)', 
+                    border: '1px solid var(--card-border)', 
+                    padding: '12px', 
+                    borderRadius: '8px', 
+                    color: 'var(--text-primary)', 
+                    cursor: 'pointer',
+                    outline: 'none',
+                    fontSize: '0.9rem'
+                  }}
+                >
+                  <option value="consultation" style={{ background: 'var(--bg-color)', color: 'var(--text-primary)' }}>Free Consultation</option>
+                  <option value="development" style={{ background: 'var(--bg-color)', color: 'var(--text-primary)' }}>System Development</option>
+                  <option value="tutoring" style={{ background: 'var(--bg-color)', color: 'var(--text-primary)' }}>Technical Tutoring</option>
+                  <option value="general" style={{ background: 'var(--bg-color)', color: 'var(--text-primary)' }}>General Collaboration</option>
                 </select>
               </div>
 
-              <textarea name="message" placeholder="Tell us briefly about your project or learning goals..." rows={4} required style={{ width: '100%', background: 'rgba(255,255,255,0.05)', border: '1px solid var(--card-border)', padding: '12px', borderRadius: '8px', color: 'white', resize: 'vertical' }}></textarea>
+              <textarea name="message" placeholder="Tell us briefly about your project or learning goals..." rows={4} required className="themed-input" style={{ resize: 'vertical' }}></textarea>
               
               <div style={{ marginTop: '10px' }}>
                 <motion.div

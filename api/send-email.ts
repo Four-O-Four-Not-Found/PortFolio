@@ -45,9 +45,10 @@ const emailTemplate = (content: string, title: string, themeName: 'dark' | 'ligh
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
+          * { box-sizing: border-box; }
           @media only screen and (max-width: 600px) {
-            .container { width: 100% !important; padding: 20px 10px !important; }
-            .card { border-radius: 0 !important; padding: 30px 20px !important; }
+            .container { width: 100% !important; padding: 10px !important; }
+            .card { border-radius: 8px !important; width: 100% !important; }
           }
         </style>
       </head>

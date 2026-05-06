@@ -332,3 +332,39 @@ a {
 		height: 300px !important;
 	}
 }
+
+.themed-input {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	width: 100%;
+	background: rgba(255, 255, 255, 0.05);
+	border: 1px solid var(--card-border);
+	padding: 12px;
+	border-radius: 8px;
+	color: white;
+	font-family: inherit;
+	font-size: 0.95rem;
+	transition: border-color 0.3s, box-shadow 0.3s;
+	min-height: 46px; /* Ensures consistency across input types */
+}
+
+.themed-input:focus {
+	outline: none;
+	border-color: var(--accent-primary);
+	box-shadow: 0 0 10px rgba(0, 132, 255, 0.2);
+}
+
+.themed-select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='rgba(0, 132, 255, 0.8)'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7' /%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: right 12px center;
+	background-size: 16px;
+}
+
+.themed-select::-ms-expand {
+	display: none;
+}

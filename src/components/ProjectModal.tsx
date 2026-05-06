@@ -587,6 +587,10 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
 								position: "relative",
 								maxWidth: "100%",
 								maxHeight: "100%",
+								display: "flex",
+								flexDirection: "column",
+								alignItems: "center",
+								gap: "20px"
 							}}
 						>
 							<img
@@ -594,13 +598,37 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
 								alt="Zoomed view"
 								style={{
 									maxWidth: "95vw",
-									maxHeight: "85vh",
+									maxHeight: "80vh",
 									borderRadius: "16px",
 									border: "1px solid var(--accent-primary)",
 									boxShadow: "0 0 50px rgba(0, 132, 255, 0.3)",
 									objectFit: "contain"
 								}}
 							/>
+							
+							{(() => {
+								const isHero = selectedImage === project.image;
+								const match = project.gallery?.find(g => g.url === selectedImage);
+								const label = match ? match.label : (isHero ? project.title + " - Overview" : "");
+								
+								return label ? (
+									<div style={{
+										color: "white",
+										fontSize: "1.1rem",
+										fontWeight: "600",
+										letterSpacing: "2px",
+										textTransform: "uppercase",
+										background: "rgba(0, 132, 255, 0.15)",
+										border: "1px solid rgba(0, 132, 255, 0.3)",
+										padding: "10px 24px",
+										borderRadius: "30px",
+										backdropFilter: "blur(10px)",
+										boxShadow: "0 0 20px rgba(0, 132, 255, 0.2)"
+									}}>
+										{label}
+									</div>
+								) : null;
+							})()}
 						</motion.div>
 						<button
 							onClick={(e) => { e.stopPropagation(); setSelectedImage(null); }}

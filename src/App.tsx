@@ -8,7 +8,7 @@ import ArchitectureReveal from './components/ArchitectureReveal';
 import projectsData from './data/projects.json';
 import teamData from './data/team.json';
 import { motion } from 'framer-motion';
-import { Mail, ExternalLink, ArrowRight } from 'lucide-react';
+import { Mail, ExternalLink, ArrowRight, Monitor, Users, BookOpen } from 'lucide-react';
 import { Github as GithubIcon, Linkedin as LinkedinIcon } from './components/Icons';
 import MagneticButton from './components/MagneticButton';
 import ProjectModal from './components/ProjectModal';
@@ -141,6 +141,71 @@ function App() {
             <p>Lighthouse // 100/100/100/100</p>
           </div>
         )}
+      </section>
+
+      {/* Services Section */}
+      <section id="services" className="section-padding" style={{ background: '#0a0a0a' }}>
+        <div className="container">
+          <div style={{ marginBottom: '60px' }}>
+            <h2 style={{ fontSize: 'clamp(2.5rem, 8vw, 3.5rem)', marginBottom: '16px' }}>Our <span className="neon-text">Expertise</span></h2>
+            <p style={{ color: 'var(--text-secondary)', maxWidth: '600px' }}>Beyond building high-fidelity projects, we offer strategic development and educational services to empower your digital journey.</p>
+          </div>
+
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(clamp(280px, 100%, 350px), 1fr))', 
+            gap: '24px' 
+          }}>
+            <TiltCard>
+              <div className="glass-card" style={{ padding: '40px', height: '100%', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                <div style={{ width: '50px', height: '50px', borderRadius: '12px', background: 'rgba(0, 132, 255, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent-primary)' }}>
+                  <Monitor size={28} />
+                </div>
+                <h3 style={{ fontSize: '1.5rem', fontWeight: '700' }}>System Development</h3>
+                <p style={{ color: 'var(--text-secondary)', lineHeight: '1.7' }}>
+                  Full-cycle development of robust, scalable systems. From enterprise .NET solutions to high-performance FastAPI backends and interactive React frontends.
+                </p>
+                <div style={{ marginTop: 'auto', display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                  {['Custom Software', 'Web Systems', 'Mobile Apps'].map(tag => (
+                    <span key={tag} style={{ fontSize: '10px', color: 'var(--accent-primary)', border: '1px solid rgba(0, 132, 255, 0.2)', padding: '4px 10px', borderRadius: '4px' }}>{tag}</span>
+                  ))}
+                </div>
+              </div>
+            </TiltCard>
+
+            <TiltCard>
+              <div className="glass-card" style={{ padding: '40px', height: '100%', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                <div style={{ width: '50px', height: '50px', borderRadius: '12px', background: 'rgba(0, 132, 255, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent-primary)' }}>
+                  <Users size={28} />
+                </div>
+                <h3 style={{ fontSize: '1.5rem', fontWeight: '700' }}>Free Consultation</h3>
+                <p style={{ color: 'var(--text-secondary)', lineHeight: '1.7' }}>
+                  Not sure where to start? We provide free architectural guidance and technical strategy sessions to help you navigate the complexity of modern development.
+                </p>
+                <div style={{ marginTop: 'auto' }}>
+                  <a href="#contact" className="btn-outline" style={{ width: '100%', justifyContent: 'center' }}>Book Session</a>
+                </div>
+              </div>
+            </TiltCard>
+
+            <TiltCard>
+              <div className="glass-card" style={{ padding: '40px', height: '100%', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                <div style={{ width: '50px', height: '50px', borderRadius: '12px', background: 'rgba(0, 132, 255, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent-primary)' }}>
+                  <BookOpen size={28} />
+                </div>
+                <h3 style={{ fontSize: '1.5rem', fontWeight: '700' }}>Technical Tutoring</h3>
+                <p style={{ color: 'var(--text-secondary)', lineHeight: '1.7' }}>
+                  Personalized mentorship in the technologies we use daily. Master React, TypeScript, and Cloud Architecture through hands-on guidance from active developers.
+                </p>
+                <div style={{ marginTop: 'auto', display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                  {['React', '.NET', 'Python', 'DevOps'].map(tag => (
+                    <span key={tag} style={{ fontSize: '10px', color: 'var(--accent-primary)', border: '1px solid rgba(0, 132, 255, 0.2)', padding: '4px 10px', borderRadius: '4px' }}>{tag}</span>
+                  ))}
+                </div>
+              </div>
+            </TiltCard>
+          </div>
+        </div>
       </section>
 
       {/* Projects Section */}

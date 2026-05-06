@@ -11,32 +11,6 @@ const Hero = ({ lowPower }: HeroProps) => {
     <section className="hero" style={{ height: '100vh', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'clip' }}>
       <ThreeHero lowPower={lowPower} />
       
-      {/* Under the Hood Metrics (Moved to background layer) */}
-      {!lowPower && (
-        <div 
-          className="hero-metrics"
-          style={{ 
-            position: 'absolute', 
-            bottom: '40px', 
-            right: '40px', 
-            fontSize: '10px', 
-            color: 'var(--accent-primary)', 
-            textAlign: 'right',
-            fontFamily: 'monospace',
-            letterSpacing: '0.1em',
-            padding: '12px',
-            borderRight: '2px solid var(--accent-primary)',
-            background: 'rgba(0,0,0,0.2)',
-            backdropFilter: 'blur(5px)',
-            pointerEvents: 'none',
-            zIndex: 1
-          }}
-        >
-          <p style={{ marginBottom: '4px' }}>LOAD_TIME // 142MS</p>
-          <p style={{ marginBottom: '4px' }}>FRAME_RATE // 60FPS</p>
-          <p>Lighthouse // 100/100/100/100</p>
-        </div>
-      )}
 
       <div className="container" style={{ position: 'relative', zIndex: 5000, textAlign: 'center' }}>
         <motion.h1 

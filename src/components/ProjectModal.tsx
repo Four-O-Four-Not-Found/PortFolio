@@ -1,6 +1,6 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Layout, ChevronLeft, ArrowUp } from "lucide-react";
+import { X, Layout, ChevronLeft, ChevronRight, ArrowUp } from "lucide-react";
 
 interface Project {
 	id: string;
@@ -33,7 +33,34 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
 	const [selectedImage, setSelectedImage] = useState<string | null>(null);
 	const [showScrollTop, setShowScrollTop] = useState(false);
 	const [activeTab, setActiveTab] = useState<'overview' | 'features' | 'gallery'>('overview');
+	const [currentSlide, setCurrentSlide] = useState(0);
+	const [isPaused, setIsPaused] = useState(false);
 	const contentRef = useRef<HTMLDivElement>(null);
+
+	// Reset slide index when modal opens or project changes
+	useEffect(() => {
+		if (isOpen) {
+			setCurrentSlide(0);
+		}
+	}, [isOpen, project?.id]);
+
+	const allImages = project 
+		? Array.from(new Set([project.image, ...(project.gallery?.map(g => g.url) || [])]))
+		: [];
+
+	const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % allImages.length);
+	const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + allImages.length) % allImages.length);
+
+	// Auto-play logic
+	useEffect(() => {
+		if (!isOpen || isPaused || allImages.length <= 1) return;
+		
+		const timer = setInterval(() => {
+			nextSlide();
+		}, 5000);
+
+		return () => clearInterval(timer);
+	}, [isOpen, isPaused, allImages.length, nextSlide]);
 
 	const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
 		const target = e.currentTarget;
@@ -157,21 +184,137 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
 										{project.title}
 									</h2>
 									<div
+										onMouseEnter={() => setIsPaused(true)}
+										onMouseLeave={() => setIsPaused(false)}
 										style={{
 											width: "100%",
-											aspectRatio: "16/9",
-											borderRadius: "16px",
+											height: "clamp(300px, 60vh, 600px)", // Fixed height to handle all aspect ratios
+											borderRadius: "20px",
 											overflow: "hidden",
 											border: "1px solid rgba(0, 132, 255, 0.2)",
-											boxShadow: "0 20px 40px rgba(0,0,0,0.4)"
+											boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
+											position: "relative",
+											background: "rgba(0,0,0,0.4)",
+											display: "flex",
+											alignItems: "center",
+											justifyContent: "center"
 										}}
 									>
-										<img
-											src={project.image}
-											alt={project.title}
-											style={{ width: "100%", height: "100%", objectFit: "cover", cursor: "zoom-in" }}
-											onClick={() => setSelectedImage(project.image)}
-										/>
+										{/* Background Blur for mixed aspect ratios */}
+										<div style={{ 
+											position: "absolute", 
+											inset: 0, 
+											backgroundImage: `url(${allImages[currentSlide]})`, 
+											backgroundSize: "cover", 
+											backgroundPosition: "center",
+											filter: "blur(40px) brightness(0.3)",
+											opacity: 0.5
+										}} />
+
+										<AnimatePresence mode="wait">
+											<motion.img
+												key={currentSlide}
+												src={allImages[currentSlide]}
+												initial={{ opacity: 0, scale: 0.95 }}
+												animate={{ opacity: 1, scale: 1 }}
+												exit={{ opacity: 0, scale: 1.05 }}
+												transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+												drag="x"
+												dragConstraints={{ left: 0, right: 0 }}
+												onDragEnd={(_, info) => {
+													if (info.offset.x > 100) prevSlide();
+													else if (info.offset.x < -100) nextSlide();
+												}}
+												alt={`${project.title} view ${currentSlide + 1}`}
+												style={{ 
+													maxWidth: "100%", 
+													maxHeight: "100%", 
+													objectFit: "contain",
+													position: "relative",
+													zIndex: 2,
+													cursor: "grab",
+													padding: "40px"
+												}}
+												whileTap={{ cursor: "grabbing" }}
+												onClick={() => setSelectedImage(allImages[currentSlide])}
+											/>
+										</AnimatePresence>
+
+										{/* Slideshow Controls */}
+										{allImages.length > 1 && (
+											<>
+												<button
+													onClick={(e) => { e.stopPropagation(); prevSlide(); }}
+													style={{
+														position: "absolute",
+														left: "20px",
+														zIndex: 10,
+														background: "rgba(0,0,0,0.5)",
+														border: "1px solid rgba(255,255,255,0.1)",
+														color: "white",
+														width: "44px",
+														height: "44px",
+														borderRadius: "50%",
+														display: "flex",
+														alignItems: "center",
+														justifyContent: "center",
+														cursor: "pointer",
+														backdropFilter: "blur(10px)",
+														transition: "all 0.3s ease"
+													}}
+													onMouseEnter={(e) => e.currentTarget.style.borderColor = "var(--accent-primary)"}
+													onMouseLeave={(e) => e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)"}
+												>
+													<ChevronLeft size={24} />
+												</button>
+												<button
+													onClick={(e) => { e.stopPropagation(); nextSlide(); }}
+													style={{
+														position: "absolute",
+														right: "20px",
+														zIndex: 10,
+														background: "rgba(0,0,0,0.5)",
+														border: "1px solid rgba(255,255,255,0.1)",
+														color: "white",
+														width: "44px",
+														height: "44px",
+														borderRadius: "50%",
+														display: "flex",
+														alignItems: "center",
+														justifyContent: "center",
+														cursor: "pointer",
+														backdropFilter: "blur(10px)",
+														transition: "all 0.3s ease"
+													}}
+													onMouseEnter={(e) => e.currentTarget.style.borderColor = "var(--accent-primary)"}
+													onMouseLeave={(e) => e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)"}
+												>
+													<ChevronRight size={24} />
+												</button>
+
+												{/* Indicators */}
+												<div style={{
+													position: "absolute",
+													bottom: "20px",
+													display: "flex",
+													gap: "8px",
+													zIndex: 10
+												}}>
+													{allImages.map((_, i) => (
+														<div
+															key={i}
+															style={{
+																width: i === currentSlide ? "24px" : "8px",
+																height: "4px",
+																borderRadius: "2px",
+																background: i === currentSlide ? "var(--accent-primary)" : "rgba(255,255,255,0.3)",
+																transition: "all 0.3s ease"
+															}}
+														/>
+													))}
+												</div>
+											</>
+										)}
 									</div>
 								</div>
 								
@@ -283,19 +426,21 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
 										</div>
 
 										{/* Project Highlights (Sidebar Location) */}
-										<div style={{ marginBottom: "40px" }}>
-											<h3 style={{ fontSize: "1rem", color: "var(--accent-primary)", textTransform: "uppercase", letterSpacing: "2px", marginBottom: "20px" }}>
-												Project Key Highlights
-											</h3>
-											<ul style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: "12px" }}>
-												{Object.values(project.features)[0].map((highlight: string, i: number) => (
-													<li key={i} style={{ fontSize: "0.85rem", color: "var(--text-primary)", display: "flex", gap: "10px", alignItems: "flex-start" }}>
-														<div style={{ width: "4px", height: "4px", borderRadius: "50%", background: "var(--accent-primary)", marginTop: "6px", flexShrink: 0 }} />
-														{highlight}
-													</li>
-												))}
-											</ul>
-										</div>
+										{project.features && Object.keys(project.features).length > 0 && (
+											<div style={{ marginBottom: "40px" }}>
+												<h3 style={{ fontSize: "1rem", color: "var(--accent-primary)", textTransform: "uppercase", letterSpacing: "2px", marginBottom: "20px" }}>
+													Project Key Highlights
+												</h3>
+												<ul style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: "12px" }}>
+													{Object.values(project.features)[0].map((highlight: string, i: number) => (
+														<li key={i} style={{ fontSize: "0.85rem", color: "var(--text-primary)", display: "flex", gap: "10px", alignItems: "flex-start" }}>
+															<div style={{ width: "4px", height: "4px", borderRadius: "50%", background: "var(--accent-primary)", marginTop: "6px", flexShrink: 0 }} />
+															{highlight}
+														</li>
+													))}
+												</ul>
+											</div>
+										)}
 
 										{/* Team Contributions */}
 										{project.contributions && (

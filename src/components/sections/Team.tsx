@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Github as GithubIcon, Linkedin as LinkedinIcon } from '../Icons';
+import { Github as GithubIcon } from '../Icons';
 import TiltCard from '../TiltCard';
 import teamData from '../../data/team.json';
 
@@ -35,7 +35,6 @@ const Team = ({ lowPower }: TeamProps) => {
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center', gap: '15px' }}>
                   <a href={member.github} className="interactive"   data-cursor-text="Profile"><GithubIcon size={18} /></a>
-                  <a href={member.linkedin} className="interactive" data-cursor-text="Profile"><LinkedinIcon size={18} /></a>
                 </div>
               </TiltCard>
             </motion.div>

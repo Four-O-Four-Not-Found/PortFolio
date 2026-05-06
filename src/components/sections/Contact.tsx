@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
-import { Mail, ArrowRight, CheckCircle, Loader2 } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Mail, ArrowRight, CheckCircle, Loader2, X } from 'lucide-react';
 import { Github as GithubIcon } from '../Icons';
 import MagneticButton from '../MagneticButton';
 
@@ -7,6 +8,7 @@ const Contact = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [requestType, setRequestType] = useState<'inquiry' | 'appointment'>('inquiry');
+  const [showPopup, setShowPopup] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,6 +30,7 @@ const Contact = () => {
     .then(async (res) => {
       if (res.ok) {
         setStatus('success');
+        setShowPopup(true);
         formRef.current?.reset();
         setTimeout(() => setStatus('idle'), 5000);
       } else {
@@ -137,26 +140,83 @@ const Contact = () => {
               <textarea name="message" placeholder="Tell us briefly about your project or learning goals..." rows={4} required style={{ width: '100%', background: 'rgba(255,255,255,0.05)', border: '1px solid var(--card-border)', padding: '12px', borderRadius: '8px', color: 'white', resize: 'vertical' }}></textarea>
               
               <div style={{ marginTop: '10px' }}>
-                <MagneticButton 
-                  type="submit" 
-                  disabled={status === 'sending' || status === 'success'}
-                  className="w-full"
+                <motion.div
+                  animate={status === 'sending' ? {
+                    x: [0, -2, 2, -2, 2, 0],
+                    transition: { repeat: Infinity, duration: 0.5 }
+                  } : {}}
                 >
-                  {status === 'sending' ? (
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><Loader2 size={16} className="animate-spin" /> Processing...</span>
-                  ) : status === 'success' ? (
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><CheckCircle size={16} /> Sent Successfully</span>
-                  ) : status === 'error' ? (
-                    'Error - Try Again'
-                  ) : (
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>Send Message <ArrowRight size={16} /></span>
-                  )}
-                </MagneticButton>
+                  <MagneticButton 
+                    type="submit" 
+                    disabled={status === 'sending' || status === 'success'}
+                    className="w-full"
+                  >
+                    {status === 'sending' ? (
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><Loader2 size={16} className="animate-spin" /> Processing...</span>
+                    ) : status === 'success' ? (
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><CheckCircle size={16} /> Sent Successfully</span>
+                    ) : status === 'error' ? (
+                      'Error - Try Again'
+                    ) : (
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>Send Message <ArrowRight size={16} /></span>
+                    )}
+                  </MagneticButton>
+                </motion.div>
               </div>
             </form>
           </div>
         </div>
       </div>
+
+      {/* Success Popup */}
+      <AnimatePresence>
+        {showPopup && (
+          <div style={{ position: 'fixed', inset: 0, zIndex: 10000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setShowPopup(false)}
+              style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.8)', backdropFilter: 'blur(10px)' }}
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="glass-card"
+              style={{ 
+                position: 'relative', 
+                width: '100%', 
+                maxWidth: '450px', 
+                padding: '40px', 
+                textAlign: 'center',
+                border: '1px solid var(--accent-primary)',
+                boxShadow: '0 0 50px rgba(0, 132, 255, 0.3)'
+              }}
+            >
+              <button 
+                onClick={() => setShowPopup(false)}
+                style={{ position: 'absolute', top: '20px', right: '20px', background: 'none', border: 'none', color: 'white', cursor: 'pointer', opacity: 0.5 }}
+              >
+                <X size={20} />
+              </button>
+
+              <div style={{ width: '80px', height: '80px', borderRadius: '50%', background: 'rgba(0, 132, 255, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px', border: '2px solid var(--accent-primary)' }}>
+                <CheckCircle size={40} color="var(--accent-primary)" />
+              </div>
+
+              <h2 style={{ fontSize: '2rem', marginBottom: '16px' }}>Message <span className="neon-text">Sent</span></h2>
+              <p style={{ color: 'var(--text-secondary)', marginBottom: '32px', lineHeight: 1.6 }}>
+                Thank you for reaching out! Your message has been received by the <strong>404: Not Found</strong> team. We will get back to you shortly.
+              </p>
+
+              <MagneticButton onClick={() => setShowPopup(false)} style={{ width: '100%' }}>
+                Got it, thanks!
+              </MagneticButton>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

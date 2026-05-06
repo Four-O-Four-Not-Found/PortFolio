@@ -82,10 +82,24 @@ function App() {
       <Contact />
 
       {/* Footer */}
-      <footer style={{ padding: '40px 0', borderTop: '1px solid var(--card-border)', textAlign: 'center' }}>
-        <p style={{ color: 'var(--text-secondary)', fontSize: '0.8rem' }}>
-          &copy; 2026 404: Not Found Collective. Built with React & Passion.
-        </p>
+      <footer style={{ padding: '80px 0 40px', borderTop: '1px solid var(--card-border)', background: 'rgba(0,0,0,0.2)' }}>
+        <div className="container" style={{ textAlign: 'center' }}>
+          <div style={{ marginBottom: '40px' }}>
+            <h2 style={{ fontSize: '1.5rem', fontWeight: '900', marginBottom: '10px', color: 'var(--accent-primary)' }}>404: <span style={{ color: 'white' }}>NOT FOUND</span></h2>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', maxWidth: '400px', margin: '0 auto' }}>
+              Building high-performance digital experiences and solving complex technical challenges.
+            </p>
+          </div>
+
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '30px', marginBottom: '40px' }}>
+            <a href="https://github.com/Four-O-Four-Not-Found" className="interactive" style={{ color: 'var(--text-secondary)', transition: 'color 0.3s' }}>GitHub</a>
+            <a href="mailto:dreamteamdevs@outlook.com" className="interactive" style={{ color: 'var(--text-secondary)', transition: 'color 0.3s' }}>Email</a>
+          </div>
+
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.7rem', opacity: 0.4 }}>
+            &copy; 2026 404: Not Found Collective. Built with React, Three.js & Passion.
+          </p>
+        </div>
       </footer>
 
       <ProjectModal 

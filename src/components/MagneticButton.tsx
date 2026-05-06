@@ -8,9 +8,10 @@ interface MagneticButtonProps {
   strength?: number;
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
+  style?: React.CSSProperties;
 }
 
-const MagneticButton = ({ children, className = '', onClick, strength = 0.5, type = "button", disabled = false }: MagneticButtonProps) => {
+const MagneticButton = ({ children, className = '', onClick, strength = 0.5, type = "button", disabled = false, style }: MagneticButtonProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
@@ -39,7 +40,7 @@ const MagneticButton = ({ children, className = '', onClick, strength = 0.5, typ
       animate={{ x: position.x, y: position.y }}
       transition={{ type: 'spring', stiffness: 150, damping: 15, mass: 0.1 }}
       className={`magnetic-wrapper ${className}`}
-      style={{ display: 'inline-block' }}
+      style={{ display: 'inline-block', ...style }}
     >
       <button 
         className="btn-primary" 

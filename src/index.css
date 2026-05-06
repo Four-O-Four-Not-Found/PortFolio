@@ -58,6 +58,10 @@ body::before {
 	opacity: 0.5;
 }
 
+html {
+	scroll-behavior: smooth;
+}
+
 * {
 	box-sizing: border-box;
 	margin: 0;

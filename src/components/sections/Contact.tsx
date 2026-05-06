@@ -57,17 +57,6 @@ const Contact = () => {
             <p style={{ color: 'var(--text-secondary)', marginBottom: '40px' }}>
               Whether you have a specific project in mind, want to book a <strong>Free Consultation</strong>, or need technical tutoring, we're ready to help.
             </p>
-            
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', marginBottom: '40px' }}>
-              <a href="mailto:dreamteamdevs@outlook.com" className="interactive" style={{ display: 'flex', alignItems: 'center', gap: '16px', color: 'var(--text-secondary)', textDecoration: 'none' }}>
-                <Mail size={24} color="var(--accent-primary)" />
-                <span>dreamteamdevs@outlook.com</span>
-              </a>
-              <a href="https://github.com/Four-O-Four-Not-Found" target="_blank" rel="noopener noreferrer" className="interactive" style={{ display: 'flex', alignItems: 'center', gap: '16px', color: 'var(--text-secondary)', textDecoration: 'none' }}>
-                <GithubIcon size={24} style={{ color: 'var(--accent-primary)' }} />
-                <span>github.com/Four-O-Four-Not-Found</span>
-              </a>
-            </div>
           </div>
           
           <div className="glass-card" style={{ padding: 'clamp(24px, 5vw, 40px)', border: '1px solid var(--card-border)' }}>
@@ -155,28 +144,21 @@ const Contact = () => {
               <textarea name="message" placeholder="Tell us briefly about your project or learning goals..." rows={4} required className="themed-input" style={{ resize: 'vertical' }}></textarea>
               
               <div style={{ marginTop: '10px' }}>
-                <motion.div
-                  animate={status === 'sending' ? {
-                    x: [0, -2, 2, -2, 2, 0],
-                    transition: { repeat: Infinity, duration: 0.5 }
-                  } : {}}
+                <MagneticButton 
+                  type="submit" 
+                  disabled={status === 'sending' || status === 'success'}
+                  className="w-full"
                 >
-                  <MagneticButton 
-                    type="submit" 
-                    disabled={status === 'sending' || status === 'success'}
-                    className="w-full"
-                  >
-                    {status === 'sending' ? (
-                      <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><Loader2 size={16} className="animate-spin" /> Processing...</span>
-                    ) : status === 'success' ? (
-                      <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><CheckCircle size={16} /> Sent Successfully</span>
-                    ) : status === 'error' ? (
-                      'Error - Try Again'
-                    ) : (
-                      <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>Send Message <ArrowRight size={16} /></span>
-                    )}
-                  </MagneticButton>
-                </motion.div>
+                  {status === 'sending' ? (
+                    <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><Loader2 size={16} className="animate-spin" /> Sending...</span>
+                  ) : status === 'success' ? (
+                    <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><CheckCircle size={16} /> Sent Successfully</span>
+                  ) : status === 'error' ? (
+                    'Error - Try Again'
+                  ) : (
+                    <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>Send Message <ArrowRight size={16} /></span>
+                  )}
+                </MagneticButton>
               </div>
             </form>
           </div>

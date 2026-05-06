@@ -38,12 +38,8 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
 	useEffect(() => {
 		const handleScroll = () => {
 			if (contentRef.current) {
-				// Only detect scroll for mobile (simple check)
-				if (window.innerWidth <= 768) {
-					setShowScrollTop(contentRef.current.scrollTop > 400);
-				} else {
-					setShowScrollTop(false);
-				}
+				const isScrolled = contentRef.current.scrollTop > 300;
+				setShowScrollTop(isScrolled);
 			}
 		};
 
@@ -79,7 +75,9 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
 							display: "flex",
 							alignItems: "flex-start",
 							justifyContent: "center",
-							overflowY: "auto",
+							overflow: "hidden", 
+							paddingTop: "0", 
+							paddingBottom: "0",
 						}}
 					>
 						<motion.div
@@ -104,16 +102,19 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
 							data-lenis-prevent
 							style={{
 								width: "100%",
-								maxWidth: "1000px",
+								maxWidth: "100%", 
+								height: "100vh", // Full viewport height
 								maxHeight: "100vh",
 								overflowY: "auto",
 								overflowX: "hidden",
 								position: "relative",
 								padding: "0",
-								border: "1px solid var(--card-border)",
+								borderRadius: "0px", 
+								border: "none", // Remove border for full screen
 								background: "var(--bg-color)",
 								scrollbarWidth: "thin",
 								scrollbarColor: "var(--accent-primary) transparent",
+								WebkitOverflowScrolling: "touch"
 							}}
 						>
 							{/* 1. Modal Header (Synced with Main Navbar Style) */}
@@ -123,14 +124,14 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
 								zIndex: 200, 
 								background: "rgba(10, 10, 10, 0.8)", 
 								backdropFilter: "blur(20px)",
-								padding: "20px 24px",
+								padding: "12px 20px", // More compact
 								display: "flex",
 								justifyContent: "space-between",
 								alignItems: "center",
 								borderBottom: "1px solid rgba(255, 255, 255, 0.05)"
 							}}>
 								<div style={{ 
-									fontSize: "clamp(18px, 4.5vw, 22px)", 
+									fontSize: "1rem", 
 									fontWeight: "900", 
 									color: "var(--accent-primary)",
 									letterSpacing: "-0.5px"
@@ -184,7 +185,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
 								/>
 							</div>
 
-							<div style={{ padding: "40px" }}>
+							<div style={{ padding: "clamp(24px, 5vw, 40px)" }}>
 								{/* 3. Project Title */}
 								<h2
 									style={{ fontSize: "clamp(2rem, 8vw, 3.5rem)", marginBottom: "20px" }}
@@ -193,55 +194,63 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
 									{project.title}
 								</h2>
 								
-								{/* 4. Action Buttons (Not Sticky) */}
-								<div className="modal-actions" style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginBottom: "24px" }}>
-									<a
-										href={project.links.github}
-										className="btn-outline"
-										style={{
-											flex: 1,
-											justifyContent: "center",
-											minWidth: "120px",
-											padding: "14px",
-											background: "var(--accent-primary)",
-											color: "white",
-											border: "none"
-										}}
-									>
-										<Github size={18} /> Source Code
-									</a>
-									<a
-										href={project.links.live}
-										className="btn-outline"
-										style={{
-											flex: 1,
-											justifyContent: "center",
-											minWidth: "120px",
-											padding: "14px"
-										}}
-									>
-										<ExternalLink size={18} /> Live Demo
-									</a>
-								</div>
+								{/* 4 & 5. Meta Row (Tech Stack & Buttons) */}
+								<div className="project-meta-row" style={{ 
+									display: "flex", 
+									justifyContent: "space-between", 
+									alignItems: "center", 
+									gap: "24px",
+									marginBottom: "40px",
+									flexWrap: "wrap"
+								}}>
+									{/* Tech Stack */}
+									<div style={{ display: "flex", gap: "8px", flexWrap: "wrap", flex: 1 }}>
+										{project.techStack.map((tech) => (
+											<span
+												key={tech}
+												style={{
+													fontSize: "11px",
+													background: "rgba(0, 132, 255, 0.1)",
+													border: "1px solid rgba(0, 132, 255, 0.3)",
+													padding: "6px 12px",
+													borderRadius: "6px",
+													color: "var(--accent-primary)",
+													whiteSpace: "nowrap"
+												}}
+											>
+												{tech}
+											</span>
+										))}
+									</div>
 
-								{/* 5. Tech Stack */}
-								<div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "40px" }}>
-									{project.techStack.map((tech) => (
-										<span
-											key={tech}
+									{/* Action Buttons */}
+									<div className="modal-actions" style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+										<a
+											href={project.links.github}
+											className="btn-outline"
 											style={{
-												fontSize: "11px",
-												background: "rgba(0, 132, 255, 0.1)",
-												border: "1px solid rgba(0, 132, 255, 0.3)",
-												padding: "6px 12px",
-												borderRadius: "6px",
-												color: "var(--accent-primary)",
+												padding: "12px 20px",
+												background: "var(--accent-primary)",
+												color: "white",
+												border: "none",
+												fontSize: "14px",
 												whiteSpace: "nowrap"
 											}}
 										>
-											{tech}
-										</span>
-									))}
+											<Github size={18} /> Source
+										</a>
+										<a
+											href={project.links.live}
+											className="btn-outline"
+											style={{
+												padding: "12px 20px",
+												fontSize: "14px",
+												whiteSpace: "nowrap"
+											}}
+										>
+											<ExternalLink size={18} /> Demo
+										</a>
+									</div>
 								</div>
 
 								<div
@@ -267,66 +276,6 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
 											{project.longDescription}
 										</p>
 
-										<h3 style={{ fontSize: "1.5rem", marginBottom: "24px" }}>
-											Technical Attribution
-										</h3>
-										<div
-											style={{
-												display: "flex",
-												flexDirection: "column",
-												gap: "16px",
-											}}
-										>
-											{Object.entries(project.contributions).map(
-												([member, work]) => (
-													<div
-														key={member}
-														className="glass-card"
-														style={{
-															padding: "16px",
-															display: "flex",
-															gap: "16px",
-															alignItems: "center",
-														}}
-													>
-														<div
-															style={{
-																width: "40px",
-																height: "40px",
-																borderRadius: "50%",
-																background: "rgba(0, 132, 255, 0.2)",
-																display: "flex",
-																alignItems: "center",
-																justifyContent: "center",
-																fontSize: "14px",
-																fontWeight: "bold",
-																color: "var(--accent-primary)",
-															}}
-														>
-															{member[0]}
-														</div>
-														<div>
-															<h4
-																style={{
-																	fontSize: "0.9rem",
-																	marginBottom: "4px",
-																}}
-															>
-																{member}
-															</h4>
-															<p
-																style={{
-																	fontSize: "0.85rem",
-																	color: "var(--text-secondary)",
-																}}
-															>
-																{work}
-															</p>
-														</div>
-													</div>
-												),
-											)}
-										</div>
 									</div>
 
 									<div>
@@ -567,8 +516,8 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
 										display: "flex",
 										alignItems: "center",
 										justifyContent: "center",
-										zIndex: 5500,
-										boxShadow: "0 0 20px rgba(0, 132, 255, 0.25)",
+										zIndex: 7500, // Above modal and everything else
+										boxShadow: "0 0 20px rgba(0, 132, 255, 0.4)",
 										cursor: "pointer",
 										transition: "all 0.3s ease"
 									}}

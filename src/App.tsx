@@ -1,5 +1,8 @@
 import { useEffect, useState, useRef } from 'react';
 import Lenis from 'lenis';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowUp, Mail } from 'lucide-react';
+import { Github as GithubIcon } from './components/Icons';
 import Navbar from './components/Navbar';
 import CustomCursor from './components/CustomCursor';
 import ProjectModal from './components/ProjectModal';
@@ -16,6 +19,8 @@ function App() {
   const [isLowPower, setIsLowPower] = useState(false);
   const [selectedProject, setSelectedProject] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
@@ -49,6 +54,11 @@ function App() {
       lenis.raf(time);
       requestAnimationFrame(raf);
     }
+
+    lenis.on('scroll', (e: any) => {
+      setShowScrollTop(e.scroll > 600);
+    });
+
     requestAnimationFrame(raf);
 
     return () => {
@@ -64,7 +74,7 @@ function App() {
   return (
     <div className="app-container">
       <CustomCursor />
-      <Navbar />
+      {!isModalOpen && <Navbar isOpen={isMenuOpen} setIsOpen={setIsMenuOpen} />}
 
       <Hero lowPower={isLowPower} />
       
@@ -91,9 +101,15 @@ function App() {
             </p>
           </div>
 
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '30px', marginBottom: '40px' }}>
-            <a href="https://github.com/Four-O-Four-Not-Found" className="interactive" style={{ color: 'var(--text-secondary)', transition: 'color 0.3s' }}>GitHub</a>
-            <a href="mailto:dreamteamdevs@outlook.com" className="interactive" style={{ color: 'var(--text-secondary)', transition: 'color 0.3s' }}>Email</a>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px', marginBottom: '40px' }}>
+            <a href="mailto:dreamteamdevs@outlook.com" className="interactive" style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--text-secondary)', textDecoration: 'none', transition: 'color 0.3s' }}>
+              <Mail size={18} color="var(--accent-primary)" />
+              <span style={{ fontSize: '0.9rem' }}>dreamteamdevs@outlook.com</span>
+            </a>
+            <a href="https://github.com/Four-O-Four-Not-Found" target="_blank" rel="noopener noreferrer" className="interactive" style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--text-secondary)', textDecoration: 'none', transition: 'color 0.3s' }}>
+              <GithubIcon size={18} style={{ color: 'var(--accent-primary)' }} />
+              <span style={{ fontSize: '0.9rem' }}>github.com/Four-O-Four-Not-Found</span>
+            </a>
           </div>
 
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.7rem', opacity: 0.4 }}>
@@ -107,6 +123,40 @@ function App() {
         isOpen={isModalOpen} 
         onClose={() => setIsModalOpen(false)} 
       />
+
+      {/* Floating Scroll to Top Button */}
+      <AnimatePresence>
+        {showScrollTop && !isMenuOpen && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.5, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.5, y: 20 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={() => lenisRef.current?.scrollTo(0)}
+            style={{
+              position: 'fixed',
+              bottom: '30px',
+              right: '30px',
+              zIndex: 9999,
+              background: 'var(--accent-primary)',
+              color: 'white',
+              width: '50px',
+              height: '50px',
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              border: 'none',
+              cursor: 'pointer',
+              boxShadow: '0 0 20px rgba(0, 132, 255, 0.4)',
+              backdropFilter: 'blur(10px)'
+            }}
+          >
+            <ArrowUp size={24} />
+          </motion.button>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

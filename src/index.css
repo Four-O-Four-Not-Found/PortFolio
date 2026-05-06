@@ -206,7 +206,7 @@ a {
 }
 
 ::-webkit-scrollbar {
-	width: 10px;
+	width: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -214,8 +214,8 @@ a {
 }
 
 ::-webkit-scrollbar-thumb {
-	background: #555;
-	border-radius: 5px;
+	background: rgba(255, 255, 255, 0.1);
+	border-radius: 10px;
 	border: 2px solid var(--bg-color);
 }
 
@@ -223,13 +223,17 @@ a {
 	background: var(--accent-primary);
 }
 
+::-webkit-scrollbar-button {
+	display: none; /* Remove arrows */
+}
+
 .modal-content::-webkit-scrollbar {
-	width: 10px;
+	width: 8px;
 }
 
 .modal-content::-webkit-scrollbar-thumb {
 	background: var(--accent-primary);
-	border-radius: 5px;
+	border-radius: 10px;
 	border: 2px solid var(--bg-color);
 }
 

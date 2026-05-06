@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, ExternalLink } from 'lucide-react';
-import { Github as GithubIcon } from '../Icons';
+import { ArrowRight } from 'lucide-react';
 import TiltCard from '../TiltCard';
 import ArchitectureReveal from '../ArchitectureReveal';
 import projectsData from '../../data/projects.json';

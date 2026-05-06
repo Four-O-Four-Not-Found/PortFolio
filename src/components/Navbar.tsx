@@ -12,6 +12,7 @@ const Navbar = ({ isOpen, setIsOpen }: NavbarProps) => {
 	const navItems = [
 		{ name: "Home", path: "#" },
 		{ name: "Projects", path: "#projects" },
+		{ name: "Services", path: "#services" },
 		{ name: "Team", path: "#team" },
 	];
 
@@ -22,12 +23,12 @@ const Navbar = ({ isOpen, setIsOpen }: NavbarProps) => {
 		<nav
 			style={{
 				position: "fixed",
-				top: 0,
+				top: "-1px", // Slight overlap to prevent gap
 				left: 0,
 				width: "100%",
 				zIndex: 6000,
-				padding: "env(safe-area-inset-top) 0 0",
-				background: "rgba(5, 7, 10, 0.95)",
+				paddingTop: "env(safe-area-inset-top)",
+				background: "var(--bg-color)", // Use solid background to hide gap
 				backdropFilter: "blur(20px)",
 				borderBottom: "1px solid rgba(255, 255, 255, 0.05)",
 			}}

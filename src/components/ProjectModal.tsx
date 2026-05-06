@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ExternalLink, Shield, Code, Database, Layout, ChevronLeft, ArrowUp } from "lucide-react";
 import { Github } from "./Icons";
@@ -35,24 +35,10 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
 	const [showScrollTop, setShowScrollTop] = useState(false);
 	const contentRef = useRef<HTMLDivElement>(null);
 
-	useEffect(() => {
-		const handleScroll = () => {
-			if (contentRef.current) {
-				const isScrolled = contentRef.current.scrollTop > 300;
-				setShowScrollTop(isScrolled);
-			}
-		};
-
-		const currentRef = contentRef.current;
-		if (currentRef) {
-			currentRef.addEventListener("scroll", handleScroll);
-		}
-		return () => {
-			if (currentRef) {
-				currentRef.removeEventListener("scroll", handleScroll);
-			}
-		};
-	}, [isOpen]);
+	const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+		const target = e.currentTarget;
+		setShowScrollTop(target.scrollTop > 300);
+	};
 
 	const scrollToTop = () => {
 		if (contentRef.current) {
@@ -95,6 +81,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
 
 						<motion.div
 							ref={contentRef}
+							onScroll={handleScroll}
 							initial={{ opacity: 0, scale: 0.9, y: 20 }}
 							animate={{ opacity: 1, scale: 1, y: 0 }}
 							exit={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -516,7 +503,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
 										display: "flex",
 										alignItems: "center",
 										justifyContent: "center",
-										zIndex: 7500, // Above modal and everything else
+										zIndex: 9999, // Max priority
 										boxShadow: "0 0 20px rgba(0, 132, 255, 0.4)",
 										cursor: "pointer",
 										transition: "all 0.3s ease"

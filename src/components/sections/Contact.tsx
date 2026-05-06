@@ -1,7 +1,6 @@
 import { useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, ArrowRight, CheckCircle, Loader2, X } from 'lucide-react';
-import { Github as GithubIcon } from '../Icons';
+import { ArrowRight, CheckCircle, Loader2, X } from 'lucide-react';
 import MagneticButton from '../MagneticButton';
 
 const Contact = () => {

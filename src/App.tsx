@@ -92,29 +92,41 @@ function App() {
       <Contact />
 
       {/* Footer */}
-      <footer style={{ padding: '80px 0 40px', borderTop: '1px solid var(--card-border)', background: 'rgba(0,0,0,0.2)' }}>
-        <div className="container" style={{ textAlign: 'center' }}>
-          <div style={{ marginBottom: '40px' }}>
-            <h2 style={{ fontSize: '1.5rem', fontWeight: '900', marginBottom: '10px', color: 'var(--accent-primary)' }}>404: <span style={{ color: 'white' }}>NOT FOUND</span></h2>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', maxWidth: '400px', margin: '0 auto' }}>
-              Building high-performance digital experiences and solving complex technical challenges.
+      <footer style={{ padding: '60px 0 40px', borderTop: '1px solid var(--card-border)', background: 'rgba(0,0,0,0.2)' }}>
+        <div className="container" style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
+          <div style={{ 
+            display: 'flex', 
+            justifyContent: 'space-between', 
+            alignItems: 'flex-start', 
+            flexWrap: 'wrap', 
+            gap: '30px' 
+          }}>
+            {/* Left Column: Brand */}
+            <div style={{ flex: '1', minWidth: '280px', textAlign: 'left' }}>
+              <h2 style={{ fontSize: '1.2rem', fontWeight: '900', marginBottom: '10px', color: 'var(--accent-primary)' }}>404: <span style={{ color: 'white' }}>NOT FOUND</span></h2>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', maxWidth: '400px', lineHeight: '1.6' }}>
+                Building high-performance digital experiences and solving complex technical challenges.
+              </p>
+            </div>
+
+            {/* Right Column: Contact */}
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '12px' }}>
+              <a href="mailto:dreamteamdevs@outlook.com" className="interactive" style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'var(--text-secondary)', textDecoration: 'none', transition: 'color 0.3s' }}>
+                <Mail size={16} color="var(--accent-primary)" />
+                <span style={{ fontSize: '0.85rem' }}>dreamteamdevs@outlook.com</span>
+              </a>
+              <a href="https://github.com/Four-O-Four-Not-Found" target="_blank" rel="noopener noreferrer" className="interactive" style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'var(--text-secondary)', textDecoration: 'none', transition: 'color 0.3s' }}>
+                <GithubIcon size={16} style={{ color: 'var(--accent-primary)' }} />
+                <span style={{ fontSize: '0.85rem' }}>github.com/Four-O-Four-Not-Found</span>
+              </a>
+            </div>
+          </div>
+
+          <div style={{ textAlign: 'center', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '20px' }}>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.7rem', opacity: 0.4 }}>
+              &copy; 2026 404: Not Found Collective. Built with React, Three.js & Passion.
             </p>
           </div>
-
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px', marginBottom: '40px' }}>
-            <a href="mailto:dreamteamdevs@outlook.com" className="interactive" style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--text-secondary)', textDecoration: 'none', transition: 'color 0.3s' }}>
-              <Mail size={18} color="var(--accent-primary)" />
-              <span style={{ fontSize: '0.9rem' }}>dreamteamdevs@outlook.com</span>
-            </a>
-            <a href="https://github.com/Four-O-Four-Not-Found" target="_blank" rel="noopener noreferrer" className="interactive" style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--text-secondary)', textDecoration: 'none', transition: 'color 0.3s' }}>
-              <GithubIcon size={18} style={{ color: 'var(--accent-primary)' }} />
-              <span style={{ fontSize: '0.9rem' }}>github.com/Four-O-Four-Not-Found</span>
-            </a>
-          </div>
-
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.7rem', opacity: 0.4 }}>
-            &copy; 2026 404: Not Found Collective. Built with React, Three.js & Passion.
-          </p>
         </div>
       </footer>
 
@@ -126,7 +138,7 @@ function App() {
 
       {/* Floating Scroll to Top Button */}
       <AnimatePresence>
-        {showScrollTop && !isMenuOpen && (
+        {showScrollTop && !isMenuOpen && !isModalOpen && (
           <motion.button
             initial={{ opacity: 0, scale: 0.5, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -139,21 +151,21 @@ function App() {
               bottom: '30px',
               right: '30px',
               zIndex: 9999,
-              background: 'var(--accent-primary)',
-              color: 'white',
-              width: '50px',
-              height: '50px',
-              borderRadius: '50%',
+              width: "45px",
+              height: "45px",
+              borderRadius: "12px",
+              background: "rgba(0, 132, 255, 0.15)",
+              backdropFilter: "blur(10px)",
+              color: "var(--accent-primary)",
+              border: "1px solid var(--accent-primary)",
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              border: 'none',
               cursor: 'pointer',
               boxShadow: '0 0 20px rgba(0, 132, 255, 0.4)',
-              backdropFilter: 'blur(10px)'
             }}
           >
-            <ArrowUp size={24} />
+            <ArrowUp size={20} />
           </motion.button>
         )}
       </AnimatePresence>

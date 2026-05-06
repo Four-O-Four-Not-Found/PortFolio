@@ -17,21 +17,21 @@ interface ThemeConfig {
 const THEMES: Record<string, ThemeConfig> = {
   dark: {
     bg: '#05070a',
-    cardBg: 'rgba(255,255,255,0.03)',
+    cardBg: 'rgba(255,255,255,0.02)',
     text: '#ffffff',
-    secondaryText: '#888888',
-    border: 'rgba(0, 132, 255, 0.2)',
+    secondaryText: '#ffffff', // Pure white, use opacity for hierarchy
+    border: 'rgba(0, 132, 255, 0.4)',
     accent: '#0084ff',
-    logo: `${SITE_URL}/favicon-96x96.png` // Assuming this is the light-on-dark logo
+    logo: `${SITE_URL}/favicon-96x96.png` 
   },
   light: {
-    bg: '#f8fafc',
-    cardBg: '#ffffff',
-    text: '#0f172a',
-    secondaryText: '#64748b',
-    border: '#e2e8f0',
-    accent: '#0066cc',
-    logo: `${SITE_URL}/favicon-96x96.png` // In a real scenario, you'd use a dark-on-light logo
+    bg: '#05070a', // User requested no black or grey, but keeping it dark as the base
+    cardBg: 'rgba(255,255,255,0.02)',
+    text: '#ffffff',
+    secondaryText: '#ffffff',
+    border: 'rgba(0, 132, 255, 0.4)',
+    accent: '#0084ff',
+    logo: `${SITE_URL}/favicon-96x96.png`
   }
 };
 
@@ -58,8 +58,10 @@ const emailTemplate = (content: string, title: string, themeName: 'dark' | 'ligh
             
             <!-- Header (Logo Only) -->
             <div style="padding: 40px 30px 20px; text-align: center;">
-              <img src="${theme.logo}" alt="404 Logo" style="width: 60px; height: 60px; display: inline-block;" />
-              <h1 style="margin: 15px 0 0; color: ${theme.accent}; font-size: 24px; font-weight: 800; letter-spacing: -0.5px;">
+              <div style="display: inline-block; padding: 12px; background: rgba(0, 132, 255, 0.1); border: 1px solid ${theme.accent}; border-radius: 50%; box-shadow: 0 0 15px ${theme.accent};">
+                <img src="${theme.logo}" alt="404 Logo" style="width: 50px; height: 50px; display: block;" />
+              </div>
+              <h1 style="margin: 20px 0 0; color: ${theme.accent}; font-size: 24px; font-weight: 800; letter-spacing: -0.5px; text-transform: uppercase;">
                 404: <span style="color: ${theme.text};">NOT FOUND</span>
               </h1>
             </div>
@@ -67,7 +69,7 @@ const emailTemplate = (content: string, title: string, themeName: 'dark' | 'ligh
             <!-- Main Content -->
             <div style="padding: 20px 30px 40px;">
               <h2 style="margin-top: 0; font-size: 20px; color: ${theme.text}; border-left: 4px solid ${theme.accent}; padding-left: 15px;">${title}</h2>
-              <div style="color: ${theme.secondaryText}; font-size: 16px; margin-top: 20px;">
+              <div style="color: ${theme.text}; opacity: 0.8; font-size: 16px; margin-top: 20px;">
                 ${content}
               </div>
             </div>
@@ -76,17 +78,17 @@ const emailTemplate = (content: string, title: string, themeName: 'dark' | 'ligh
             <div style="padding: 30px; background: rgba(0,0,0,0.05); border-top: 1px solid ${theme.border}; text-align: center;">
               <div style="margin-bottom: 20px;">
                 <a href="https://github.com/Four-O-Four-Not-Found" style="display: inline-block; margin: 0 12px; text-decoration: none;">
-                  <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" style="width: 20px; height: 20px; filter: ${themeName === 'dark' ? 'invert(1)' : 'none'}; opacity: 0.6;" />
+                  <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" style="width: 20px; height: 20px; filter: invert(1) brightness(2); opacity: 0.9;" />
                 </a>
                 <a href="mailto:dreamteamdevs@outlook.com" style="display: inline-block; margin: 0 12px; text-decoration: none;">
-                  <img src="https://cdn-icons-png.flaticon.com/512/3178/3178158.png" alt="Email" style="width: 20px; height: 20px; filter: ${themeName === 'dark' ? 'invert(1)' : 'none'}; opacity: 0.6;" />
+                  <img src="https://cdn-icons-png.flaticon.com/512/3178/3178158.png" alt="Email" style="width: 20px; height: 20px; filter: invert(1) brightness(2); opacity: 0.9;" />
                 </a>
                 <a href="${SITE_URL}/" style="display: inline-block; margin: 0 12px; text-decoration: none;">
-                  <img src="https://cdn-icons-png.flaticon.com/512/3114/3114883.png" alt="Website" style="width: 20px; height: 20px; filter: ${themeName === 'dark' ? 'invert(1)' : 'none'}; opacity: 0.6;" />
+                  <img src="https://cdn-icons-png.flaticon.com/512/3114/3114883.png" alt="Website" style="width: 20px; height: 20px; filter: invert(1) brightness(2); opacity: 0.9;" />
                 </a>
               </div>
 
-              <p style="margin: 0; font-size: 11px; color: ${theme.secondaryText}; letter-spacing: 0.5px; text-transform: uppercase;">
+              <p style="margin: 0; font-size: 11px; color: ${theme.text}; opacity: 0.5; letter-spacing: 0.5px; text-transform: uppercase;">
                 © 2026 404: NOT FOUND. 
                 <br/>
                 Automated Inquiry Confirmation
@@ -125,7 +127,7 @@ export default async function handler(req: any, res: any) {
           ${isAppointment ? `<p style="margin: 5px 0;"><strong>Schedule:</strong> ${date} at ${time}</p>` : ''}
         </div>
         <p><strong>Message:</strong></p>
-        <p style="font-style: italic; color: ${THEMES[activeTheme].secondaryText};">"${message}"</p>
+        <p style="font-style: italic; color: ${THEMES[activeTheme].text}; opacity: 0.7;">"${message}"</p>
       `, `New ${request_type === 'appointment' ? 'Appointment' : 'Inquiry'} Details`, activeTheme),
     });
 

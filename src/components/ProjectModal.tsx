@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ExternalLink, Shield, Code, Database, Layout } from "lucide-react";
+import { X, ExternalLink, Shield, Code, Database, Layout, ChevronLeft, ArrowUp } from "lucide-react";
 import { Github } from "./Icons";
 
 interface Project {
@@ -32,6 +32,37 @@ interface ProjectModalProps {
 
 const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
 	const [selectedImage, setSelectedImage] = useState<string | null>(null);
+	const [showScrollTop, setShowScrollTop] = useState(false);
+	const contentRef = useRef<HTMLDivElement>(null);
+
+	useEffect(() => {
+		const handleScroll = () => {
+			if (contentRef.current) {
+				// Only detect scroll for mobile (simple check)
+				if (window.innerWidth <= 768) {
+					setShowScrollTop(contentRef.current.scrollTop > 400);
+				} else {
+					setShowScrollTop(false);
+				}
+			}
+		};
+
+		const currentRef = contentRef.current;
+		if (currentRef) {
+			currentRef.addEventListener("scroll", handleScroll);
+		}
+		return () => {
+			if (currentRef) {
+				currentRef.removeEventListener("scroll", handleScroll);
+			}
+		};
+	}, [isOpen]);
+
+	const scrollToTop = () => {
+		if (contentRef.current) {
+			contentRef.current.scrollTo({ top: 0, behavior: "smooth" });
+		}
+	};
 
 	if (!project) return null;
 
@@ -44,11 +75,10 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
 						style={{
 							position: "fixed",
 							inset: 0,
-							zIndex: 2000,
+							zIndex: 5000,
 							display: "flex",
 							alignItems: "flex-start",
 							justifyContent: "center",
-							padding: "20px",
 							overflowY: "auto",
 						}}
 					>
@@ -66,6 +96,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
 						/>
 
 						<motion.div
+							ref={contentRef}
 							initial={{ opacity: 0, scale: 0.9, y: 20 }}
 							animate={{ opacity: 1, scale: 1, y: 0 }}
 							exit={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -74,17 +105,61 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
 							style={{
 								width: "100%",
 								maxWidth: "1000px",
-								maxHeight: "90vh",
+								maxHeight: "100vh",
 								overflowY: "auto",
+								overflowX: "hidden",
 								position: "relative",
 								padding: "0",
 								border: "1px solid var(--card-border)",
 								background: "var(--bg-color)",
-								scrollbarWidth: "auto",
+								scrollbarWidth: "thin",
 								scrollbarColor: "var(--accent-primary) transparent",
 							}}
 						>
-							{/* Header / Hero */}
+							{/* 1. Modal Header (Synced with Main Navbar Style) */}
+							<div style={{ 
+								position: "sticky", 
+								top: 0, 
+								zIndex: 200, 
+								background: "rgba(10, 10, 10, 0.8)", 
+								backdropFilter: "blur(20px)",
+								padding: "20px 24px",
+								display: "flex",
+								justifyContent: "space-between",
+								alignItems: "center",
+								borderBottom: "1px solid rgba(255, 255, 255, 0.05)"
+							}}>
+								<div style={{ 
+									fontSize: "clamp(18px, 4.5vw, 22px)", 
+									fontWeight: "900", 
+									color: "var(--accent-primary)",
+									letterSpacing: "-0.5px"
+								}}>
+									404: <span style={{ color: "white" }}>Not Found</span>
+								</div>
+								<button
+									onClick={onClose}
+									style={{
+										background: "rgba(0, 132, 255, 0.15)",
+										border: "1px solid var(--accent-primary)",
+										color: "var(--accent-primary)",
+										padding: "10px 16px",
+										borderRadius: "12px",
+										display: "flex",
+										alignItems: "center",
+										gap: "8px",
+										cursor: "pointer",
+										fontSize: "13px",
+										fontWeight: "700",
+										backdropFilter: "blur(10px)",
+										boxShadow: "0 0 15px rgba(0, 132, 255, 0.3)"
+									}}
+								>
+									<ChevronLeft size={18} /> CLOSE
+								</button>
+							</div>
+
+							{/* 2. Project Image */}
 							<div
 								style={{
 									height: "auto",
@@ -104,96 +179,69 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
 									style={{
 										position: "absolute",
 										inset: 0,
-										background:
-											"linear-gradient(to bottom, transparent, var(--bg-color))",
+										background: "linear-gradient(to bottom, transparent, var(--bg-color))",
 									}}
 								/>
-								<button
-									onClick={onClose}
-									className="interactive"
-									data-cursor-text="Close"
-									style={{
-										position: "absolute",
-										top: "20px",
-										right: "20px",
-										background: "rgba(0, 0, 0, 0.5)",
-										backdropFilter: "blur(5px)",
-										border: "1px solid rgba(255, 255, 255, 0.2)",
-										color: "white",
-										padding: "10px",
-										borderRadius: "50%",
-										cursor: "pointer",
-										zIndex: 100,
-										display: "flex",
-										alignItems: "center",
-										justifyContent: "center",
-										transition: "all 0.3s ease",
-									}}
-								>
-									<X size={20} />
-								</button>
 							</div>
 
 							<div style={{ padding: "40px" }}>
-								<div
-									style={{
-										display: "flex",
-										justifyContent: "space-between",
-										alignItems: "flex-start",
-										marginBottom: "32px",
-									}}
+								{/* 3. Project Title */}
+								<h2
+									style={{ fontSize: "clamp(2rem, 8vw, 3.5rem)", marginBottom: "20px" }}
+									className="neon-text"
 								>
-									<div>
-										<h2
-											style={{ fontSize: "3rem", marginBottom: "8px" }}
-											className="neon-text"
-										>
-											{project.title}
-										</h2>
-										<div style={{ display: "flex", gap: "8px" }}>
-											{project.techStack.map((tech) => (
-												<span
-													key={tech}
-													style={{
-														fontSize: "11px",
-														background: "rgba(0, 132, 255, 0.1)",
-														border: "1px solid rgba(0, 132, 255, 0.3)",
-														padding: "4px 10px",
-														borderRadius: "4px",
-														color: "var(--accent-primary)",
-													}}
-												>
-													{tech}
-												</span>
-											))}
-										</div>
-									</div>
-									<div style={{ display: "flex", gap: "16px" }}>
-										<a
-											href={project.links.github}
-											className="btn-primary"
+									{project.title}
+								</h2>
+								
+								{/* 4. Action Buttons (Not Sticky) */}
+								<div className="modal-actions" style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginBottom: "24px" }}>
+									<a
+										href={project.links.github}
+										className="btn-outline"
+										style={{
+											flex: 1,
+											justifyContent: "center",
+											minWidth: "120px",
+											padding: "14px",
+											background: "var(--accent-primary)",
+											color: "white",
+											border: "none"
+										}}
+									>
+										<Github size={18} /> Source Code
+									</a>
+									<a
+										href={project.links.live}
+										className="btn-outline"
+										style={{
+											flex: 1,
+											justifyContent: "center",
+											minWidth: "120px",
+											padding: "14px"
+										}}
+									>
+										<ExternalLink size={18} /> Live Demo
+									</a>
+								</div>
+
+								{/* 5. Tech Stack */}
+								<div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "40px" }}>
+									{project.techStack.map((tech) => (
+										<span
+											key={tech}
 											style={{
-												display: "flex",
-												alignItems: "center",
-												gap: "8px",
-												padding: "10px 20px",
+												fontSize: "11px",
+												background: "rgba(0, 132, 255, 0.1)",
+												border: "1px solid rgba(0, 132, 255, 0.3)",
+												padding: "6px 12px",
+												borderRadius: "6px",
+												color: "var(--accent-primary)",
+												whiteSpace: "nowrap"
 											}}
 										>
-											<Github size={18} /> Source Code
-										</a>
-										<a
-											href={project.links.live}
-											className="btn-primary"
-											style={{
-												display: "flex",
-												alignItems: "center",
-												gap: "8px",
-												padding: "10px 20px",
-											}}
-										>
-											<ExternalLink size={18} /> Live Demo
-										</a>
-									</div>
+											{tech}
+										</span>
+									))}
 								</div>
 
 								<div
@@ -494,6 +542,41 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
 								)}
 							</div>
 						</motion.div>
+
+						{/* Floating Scroll to Top (Mobile Only) - Moved Outside Scrollable Content */}
+						<AnimatePresence>
+							{showScrollTop && (
+								<motion.button
+									initial={{ opacity: 0, scale: 0.5, y: 20 }}
+									animate={{ opacity: 1, scale: 1, y: 0 }}
+									exit={{ opacity: 0, scale: 0.5, y: 20 }}
+									whileHover={{ scale: 1.1 }}
+									whileTap={{ scale: 0.9 }}
+									onClick={scrollToTop}
+									style={{
+										position: "fixed",
+										bottom: "30px",
+										right: "30px",
+										width: "45px",
+										height: "45px",
+										borderRadius: "12px",
+										background: "rgba(0, 132, 255, 0.15)",
+										backdropFilter: "blur(10px)",
+										color: "var(--accent-primary)",
+										border: "1px solid var(--accent-primary)",
+										display: "flex",
+										alignItems: "center",
+										justifyContent: "center",
+										zIndex: 5500,
+										boxShadow: "0 0 20px rgba(0, 132, 255, 0.25)",
+										cursor: "pointer",
+										transition: "all 0.3s ease"
+									}}
+								>
+									<ArrowUp size={20} />
+								</motion.button>
+							)}
+						</AnimatePresence>
 					</div>
 				)}
 			</AnimatePresence>
@@ -509,7 +592,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
 						style={{
 							position: "fixed",
 							inset: 0,
-							zIndex: 3000,
+							zIndex: 6000,
 							background: "rgba(0, 0, 0, 0.95)",
 							backdropFilter: "blur(15px)",
 							display: "flex",

@@ -4,11 +4,23 @@ import { motion, useSpring } from 'framer-motion';
 const CustomCursor = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [hoverText, setHoverText] = useState('');
+  const [isMobile, setIsMobile] = useState(false);
 
   const mouseX = useSpring(0, { stiffness: 500, damping: 50 });
   const mouseY = useSpring(0, { stiffness: 500, damping: 50 });
 
   useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) return;
+
     const handleMouseMove = (e: MouseEvent) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
@@ -34,6 +46,8 @@ const CustomCursor = () => {
       window.removeEventListener('mouseover', handleMouseOver);
     };
   }, [mouseX, mouseY]);
+
+  if (isMobile) return null;
 
   return (
     <motion.div

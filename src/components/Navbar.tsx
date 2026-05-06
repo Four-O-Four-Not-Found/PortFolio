@@ -10,7 +10,6 @@ const Navbar = () => {
 		{ name: "Home", path: "#" },
 		{ name: "Projects", path: "#projects" },
 		{ name: "Team", path: "#team" },
-		{ name: "Contact", path: "#contact" },
 	];
 
 	const toggleMenu = () => setIsOpen(!isOpen);
@@ -44,6 +43,9 @@ const Navbar = () => {
 					initial={{ opacity: 0, x: -20 }}
 					animate={{ opacity: 1, x: 0 }}
 					style={{
+						display: "flex",
+						alignItems: "center",
+						gap: "10px",
 						fontSize: "clamp(16px, 4.5vw, 22px)",
 						fontWeight: "900",
 						letterSpacing: "-0.5px",
@@ -52,7 +54,7 @@ const Navbar = () => {
 						flexShrink: 1
 					}}
 				>
-					404: <span style={{ color: "var(--text-primary)" }}>Not Found</span>
+					<img src="/favicon.svg" alt="404 Logo" style={{ width: "50px", height: "50px" }} />
 				</motion.div>
 
 				{/* Desktop Navigation */}

@@ -82,8 +82,8 @@ body::after {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: url("https://grainy-gradients.vercel.app/noise.svg");
-	opacity: 0.05;
+	background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAAD9tt+IAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAElBMVEUAAAD8/Pz09PT4+PjMzMz///86T99vAAAABXRSTlMAAIAAgIDQInOaAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAWElEQVQ4y2NgwAHYmBggIDYWBoYmBoYmBobGBobGRobGZgaGZoYmRpbGZobGRobGZobGZobGZobGRoaGRoamRgaGJgaGhoYmBoYmBoYmZpYmZpYmZpYmpmYAANk6FfL10YmIAAAAAElFTkSuQmCC");
+	opacity: 0.03;
 	pointer-events: none;
 	z-index: 9999;
 }

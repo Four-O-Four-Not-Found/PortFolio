@@ -7,9 +7,10 @@ interface MagneticButtonProps {
   onClick?: () => void;
   strength?: number;
   type?: "button" | "submit" | "reset";
+  disabled?: boolean;
 }
 
-const MagneticButton = ({ children, className = '', onClick, strength = 0.5, type = "button" }: MagneticButtonProps) => {
+const MagneticButton = ({ children, className = '', onClick, strength = 0.5, type = "button", disabled = false }: MagneticButtonProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
@@ -40,7 +41,13 @@ const MagneticButton = ({ children, className = '', onClick, strength = 0.5, typ
       className={`magnetic-wrapper ${className}`}
       style={{ display: 'inline-block' }}
     >
-      <button className="btn-primary" onClick={onClick} type={type}>
+      <button 
+        className="btn-primary" 
+        onClick={onClick} 
+        type={type} 
+        disabled={disabled}
+        style={{ opacity: disabled ? 0.6 : 1, cursor: disabled ? 'not-allowed' : 'pointer' }}
+      >
         {children}
       </button>
     </motion.div>

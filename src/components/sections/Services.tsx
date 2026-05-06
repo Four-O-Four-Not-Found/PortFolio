@@ -62,10 +62,10 @@ const Services = () => {
               </div>
               <h3 style={{ fontSize: '1.5rem', fontWeight: '700' }}>Technical Tutoring</h3>
               <p style={{ color: 'var(--text-secondary)', lineHeight: '1.7', fontSize: '0.95rem' }}>
-                Personalized mentorship in the technologies we use daily. Master React, TypeScript, and Cloud Architecture through hands-on guidance from active developers.
+                Comprehensive mentorship spanning modern full-stack development. Master core languages, frameworks, and architectural patterns through hands-on guidance from the team.
               </p>
               <div style={{ marginTop: 'auto', display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-                {['React', '.NET', 'Python', 'DevOps'].map(tag => (
+                {['React', '.NET', 'Python', 'TypeScript', 'Node.js', 'SQL', 'DevOps', '+ MORE'].map(tag => (
                   <span key={tag} style={{ fontSize: '10px', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--accent-primary)', border: '1px solid rgba(0, 132, 255, 0.2)', padding: '4px 10px', borderRadius: '6px', background: 'rgba(0, 132, 255, 0.05)' }}>{tag}</span>
                 ))}
               </div>

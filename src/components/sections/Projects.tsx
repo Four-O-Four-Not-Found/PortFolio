@@ -44,11 +44,7 @@ const Projects = ({ lowPower, onOpenProject }: ProjectsProps) => {
                   <div style={{ marginBottom: '20px' }}>
                     <h3 style={{ fontSize: '1.5rem', fontWeight: '700', marginBottom: '12px' }}>{project.title}</h3>
                     
-                    {/* Actions strictly below title */}
-                    <div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}>
-                      <a href={project.links.github} className="btn-outline" style={{ padding: '6px 12px', fontSize: '11px', background: 'var(--accent-primary)', color: 'white', border: 'none' }} onClick={(e) => e.stopPropagation()}><GithubIcon size={14} /> Code</a>
-                      <a href={project.links.live} className="btn-outline" style={{ padding: '6px 12px', fontSize: '11px' }} onClick={(e) => e.stopPropagation()}><ExternalLink size={14} /> Demo</a>
-                    </div>
+                    {/* Actions Removed Temporarily */}
 
                     {/* Tech Stack below buttons */}
                     <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>

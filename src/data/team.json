@@ -4,7 +4,7 @@
     "name": "Kyle P. Borja",
     "role": "Deployment & UI Engineer",
     "bio": "Specializes in modern deployment workflows, webhooks, and CI/CD pipelines, while maintaining a sharp focus on intuitive UI/UX design.",
-    "skills": ["Deployment", "Webhooks", "CI/CD", "React", "UI/UX"],
+    "skills": ["Frontend", "Deployment", "CI/CD", "UI/UX"],
     "github": "https://github.com/KyleBorja",
     "linkedin": "#"
   },
@@ -13,7 +13,7 @@
     "name": "Elizer A. Ybañez",
     "role": "Project Manager & UI/QA",
     "bio": "Oversees project lifecycles, manages team coordination, and ensures high quality through rigorous QA testing and UI refinement.",
-    "skills": ["Project Management", "UI Design", "QA Testing", "Team Leadership"],
+    "skills": ["Project Management", "UI/UX", "QA Testing", "Strategy"],
     "github": "https://github.com/elizerybanez01",
     "linkedin": "#"
   },
@@ -22,7 +22,7 @@
     "name": "Kenneth Z. Piloton",
     "role": "Database Architect",
     "bio": "Expert in designing robust database structures and Entity Relationship Diagrams (ERDs) to ensure data integrity and performance.",
-    "skills": ["Database Design", "ERD", "SQL", "Data Modeling"],
+    "skills": ["Database", "Backend", "SQL", "Data Modeling"],
     "github": "https://github.com/kurapika234",
     "linkedin": "#"
   },
@@ -31,7 +31,7 @@
     "name": "Creishen Natasha C. Ayuman",
     "role": "Backend Developer",
     "bio": "Focused on building scalable backend APIs and essential services that power complex web applications.",
-    "skills": ["Backend APIs", "Services", "Node.js", "System Architecture"],
+    "skills": ["Backend", "APIs", "Services", "Architecture"],
     "github": "https://github.com/creishen",
     "linkedin": "#"
   }

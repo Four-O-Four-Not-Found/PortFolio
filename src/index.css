@@ -86,6 +86,12 @@ body {
 	padding: 0;
 	width: 100%;
 	min-height: 100vh;
+	position: relative;
+	z-index: 10; /* Content on top */
+}
+
+section {
+	background: transparent !important; /* Ensure particles show through */
 }
 
 body::after {
@@ -96,7 +102,7 @@ body::after {
 	width: 100%;
 	height: 100%;
 	background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAAD9tt+IAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAElBMVEUAAAD8/Pz09PT4+PjMzMz///86T99vAAAABXRSTlMAAIAAgIDQInOaAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAWElEQVQ4y2NgwAHYmBggIDYWBoYmBoYmBobGBobGRobGZgaGZoYmRpbGZobGRobGZobGZobGZobGRoaGRoamRgaGJgaGhoYmBoYmBoYmZpYmZpYmZpYmpmYAANk6FfL10YmIAAAAAElFTkSuQmCC");
-	opacity: 0.03;
+	opacity: 0.04; /* Slightly more visible texture */
 	pointer-events: none;
 	z-index: 9999;
 }
@@ -105,8 +111,24 @@ h1,
 h2,
 h3,
 h4 {
-	font-weight: 700;
-	letter-spacing: -0.02em;
+	font-weight: 800;
+	letter-spacing: -0.04em; /* Tighter tracking for pro look */
+	line-height: 1.1;
+}
+
+section {
+	position: relative;
+}
+
+section::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 100%;
+	height: 1px;
+	background: linear-gradient(90deg, transparent, var(--card-border), transparent);
 }
 
 a {
@@ -120,13 +142,14 @@ a {
 	-webkit-backdrop-filter: blur(var(--glass-blur));
 	border: 1px solid var(--card-border);
 	border-radius: 12px;
-	transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-	box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+	transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+	box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
 
 .glass-card:hover {
 	border-color: var(--accent-primary);
-	box-shadow: 0 0 20px rgba(0, 132, 255, 0.2);
+	box-shadow: 0 0 30px rgba(0, 132, 255, 0.25), inset 0 0 20px rgba(0, 132, 255, 0.05);
+	transform: translateY(-5px);
 }
 
 .neon-text {
@@ -227,7 +250,7 @@ a {
 	margin: 0 auto;
 	padding: 0 clamp(16px, 5vw, 40px);
 	width: 100%;
-	overflow-x: hidden;
+	overflow: clip; /* Strictly prevent all hover-induced scrollbars */
 }
 
 .modal-wrapper {

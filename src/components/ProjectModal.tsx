@@ -210,34 +210,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
 										))}
 									</div>
 
-									{/* Action Buttons */}
-									<div className="modal-actions" style={{ display: "flex", gap: "12px", alignItems: "center" }}>
-										<a
-											href={project.links.github}
-											className="btn-outline"
-											style={{
-												padding: "12px 20px",
-												background: "var(--accent-primary)",
-												color: "white",
-												border: "none",
-												fontSize: "14px",
-												whiteSpace: "nowrap"
-											}}
-										>
-											<Github size={18} /> Source
-										</a>
-										<a
-											href={project.links.live}
-											className="btn-outline"
-											style={{
-												padding: "12px 20px",
-												fontSize: "14px",
-												whiteSpace: "nowrap"
-											}}
-										>
-											<ExternalLink size={18} /> Demo
-										</a>
-									</div>
+									{/* Action Buttons Removed Temporarily */}
 								</div>
 
 								<div

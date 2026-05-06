@@ -22,12 +22,13 @@ const Navbar = () => {
 				left: 0,
 				width: "100%",
 				zIndex: 3000,
-				padding: "20px 0",
-				background: "rgba(10, 10, 10, 0.5)",
+				padding: "0",
+				background: "rgba(5, 7, 10, 0.8)",
 				backdropFilter: "blur(20px)",
 				borderBottom: "1px solid rgba(255, 255, 255, 0.05)",
 			}}
 		>
+			<div style={{ height: "env(safe-area-inset-top)", width: "100%" }} />
 			<div
 				style={{
 					maxWidth: "1200px",
@@ -35,7 +36,7 @@ const Navbar = () => {
 					display: "flex",
 					justifyContent: "space-between",
 					alignItems: "center",
-					padding: "0 clamp(16px, 4vw, 40px)",
+					padding: "20px clamp(16px, 4vw, 40px)",
 				}}
 			>
 				{/* Logo */}

@@ -5,18 +5,6 @@ import TiltCard from '../TiltCard';
 import ArchitectureReveal from '../ArchitectureReveal';
 import projectsData from '../../data/projects.json';
 
-interface Project {
-  id: string;
-  title: string;
-  description: string;
-  image: string;
-  techStack: string[];
-  links: {
-    github: string;
-    live: string;
-  };
-}
-
 interface ProjectsProps {
   lowPower: boolean;
   onOpenProject: (project: any) => void;
@@ -28,11 +16,6 @@ const Projects = ({ lowPower, onOpenProject }: ProjectsProps) => {
       <div className="container">
         <div style={{ marginBottom: '60px' }}>
           <h2 style={{ fontSize: '3rem', marginBottom: '16px' }}>Our <span className="neon-text">Projects</span></h2>
-          <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-            {['All', 'React', '.NET', 'Mobile', 'FastAPI'].map(filter => (
-              <button key={filter} className="glass-card" style={{ padding: '6px 16px', fontSize: '12px', cursor: 'pointer', color: '#ffffff' }}>{filter}</button>
-            ))}
-          </div>
         </div>
 
         <div className="projects-grid" style={{ 

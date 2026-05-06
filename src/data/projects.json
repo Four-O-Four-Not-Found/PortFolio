@@ -4,75 +4,241 @@
     "title": "Evissa",
     "description": "A comprehensive HOA management system that handles payments, reservations, identity signups, and financial reporting.",
     "longDescription": "Evissa is designed to streamline Homeowners Association activities. It features a robust payment gateway, a booking system for common areas, identity verification for residents, and automated financial status exports. The platform also handles voucher requests and all administrative HOA tasks in one centralized location.",
-    "techStack": ["React", ".NET Core", "SQL Server", "Azure"],
-    "team": ["Member 1", "Member 2", "Member 3", "Member 4"],
+    "techStack": ["Flutter", "Firebase", "Provider", "Python (AI)", "TensorFlow", "Paymongo"],
+    "team": ["Kyle P. Borja", "Elizer A. Ybañez", "Kenneth Z. Piloton", "Creishen Natasha C. Ayuman"],
     "contributions": {
-      "Member 1": "Frontend Architecture & Payment Integration",
-      "Member 2": "Identity Service & Signups",
-      "Member 3": "Database Design & Financial Reporting",
-      "Member 4": "Reservations System & UI/UX"
+      "Kyle P. Borja": "UI/UX Refinement & Deployment",
+      "Elizer A. Ybañez": "Project Management & QA Testing",
+      "Kenneth Z. Piloton": "Database Structure & ERD Design",
+      "Creishen Natasha C. Ayuman": "Backend API Services"
     },
     "links": {
       "live": "#",
       "github": "#"
     },
-    "image": "/projects/evissa-preview.png"
+    "image": "/Portfolio/Evissa/login.png",
+    "gallery": [
+      { "url": "/Portfolio/Evissa/login.png", "label": "Resident Login Page", "category": "Authentication & Entry" },
+      { "url": "/Portfolio/Evissa/HO-Login.png", "label": "Homeowner Secure Entry", "category": "Authentication & Entry" },
+      { "url": "/Portfolio/Evissa/adminlogin.png", "label": "Administrative Access", "category": "Authentication & Entry" },
+      { "url": "/Portfolio/Evissa/HOA DASHBOARD.png", "label": "Officer Central Hub", "category": "Main Navigation" },
+      { "url": "/Portfolio/Evissa/chatbot.png", "label": "AI-Powered Community Assistant", "category": "Communication" },
+      { "url": "/Portfolio/Evissa/reseravation page.png", "label": "Facility Booking System", "category": "Amenity Management" },
+      { "url": "/Portfolio/Evissa/reservation detials and confirmation.png", "label": "Reservation Review", "category": "Amenity Management" },
+      { "url": "/Portfolio/Evissa/due page.png", "label": "Dues & Billing Overview", "category": "Financial Services" },
+      { "url": "/Portfolio/Evissa/due invoice.png", "label": "Invoice Generation", "category": "Financial Services" },
+      { "url": "/Portfolio/Evissa/paymongo-dues.png", "label": "Digital Payment Integration", "category": "Financial Services" },
+      { "url": "/Portfolio/Evissa/paymngo-step2.png", "label": "Secure Checkout Flow", "category": "Financial Services" },
+      { "url": "/Portfolio/Evissa/cash or online pay.png", "label": "Flexible Payment Options", "category": "Financial Services" },
+      { "url": "/Portfolio/Evissa/HOA CASHFLOW.png", "label": "Financial Transparency", "category": "Financial Services" },
+      { "url": "/Portfolio/Evissa/CASH VOUCHER DETAILS.png", "label": "Disbursement Tracking", "category": "Financial Services" },
+      { "url": "/Portfolio/Evissa/vehicle registration.png", "label": "Security Vehicle Logging", "category": "Household Registry" },
+      { "url": "/Portfolio/Evissa/vehicle reg 2.png", "label": "Vehicle Detail Entry", "category": "Household Registry" },
+      { "url": "/Portfolio/Evissa/vehicle reg 3.png", "label": "Plate Recognition Sync", "category": "Household Registry" },
+      { "url": "/Portfolio/Evissa/HIRE LABOR.png", "label": "Community Labor Directory", "category": "Labor Ecosystem" },
+      { "url": "/Portfolio/Evissa/hire labor 1.png", "label": "Laborer Selection", "category": "Labor Ecosystem" },
+      { "url": "/Portfolio/Evissa/hire labor 2.png", "label": "Booking Specific Tasks", "category": "Labor Ecosystem" },
+      { "url": "/Portfolio/Evissa/hire labor 3.png", "label": "Terms & Agreement", "category": "Labor Ecosystem" },
+      { "url": "/Portfolio/Evissa/hire labor choose payment.png", "label": "Payment for Services", "category": "Labor Ecosystem" },
+      { "url": "/Portfolio/Evissa/EX Laborer dashboard.png", "label": "External Worker Interface", "category": "Labor Ecosystem" },
+      { "url": "/Portfolio/Evissa/ex laboere labor details.png", "label": "Worker Profile", "category": "Labor Ecosystem" },
+      { "url": "/Portfolio/Evissa/HOA LIST.png", "label": "Officers & Directory", "category": "Governance & Admin" },
+      { "url": "/Portfolio/Evissa/HOA OFFCICER CAN SEE REPORTS.png", "label": "Incident Management", "category": "Governance & Admin" }
+    ],
+    "features": {
+      "Authentication & Access": [
+        "Splash Screen & Initialization",
+        "Secure Resident & Officer Login",
+        "Role-Based Routing (Homeowner, Tenant, Officer, Laborer)",
+        "Status-Based Access Gating"
+      ],
+      "Community Services": [
+        "Real-time Amenity Reservation",
+        "Automated Dues & Billing Tracking",
+        "In-app Peer-to-Peer Messaging",
+        "AI-Powered Community Chatbot Assistant"
+      ],
+      "Household Management": [
+        "Family Member Registration",
+        "Secure Vehicle Logging with Plate Sync",
+        "Community Pet Registry"
+      ],
+      "Laborer Ecosystem": [
+        "Personal Staff Management",
+        "Public Community Labor Directory",
+        "External Laborer simplified interface"
+      ],
+      "Governance & Admin": [
+        "HOA Officers Directory",
+        "Community Incident Reporting",
+        "Digital Policy Repository",
+        "Forum Discussions (Announcements, Meetings, General)"
+      ]
+    }
   },
   {
     "id": "erp-hardware",
     "title": "ERP Hardware System",
     "description": "Specific hardware shop ERP with POS, inventory management, and multi-role dashboards.",
     "longDescription": "A multi-faceted ERP system tailored for hardware retail. Includes a POS terminal for cashiers, an owner's dashboard for financial and inventory oversight, and a warehouse manager view for restocking and delivery tracking. It also features a driver app for navigation and delivery management.",
-    "techStack": ["React Native", "FastAPI", "PostgreSQL", "Google Maps API"],
-    "team": ["Member 1", "Member 2", "Member 3", "Member 4"],
+    "techStack": ["React", ".NET 8", "Supabase", "Vite", "Redux Toolkit", "SignalR"],
+    "team": ["Kyle P. Borja", "Elizer A. Ybañez", "Kenneth Z. Piloton", "Creishen Natasha C. Ayuman"],
     "contributions": {
-      "Member 1": "Mobile Driver App & Navigation",
-      "Member 2": "POS Terminal & Real-time Sync",
-      "Member 3": "Inventory Logic & Warehouse APIs",
-      "Member 4": "Admin Dashboard & Financial Analytics"
+      "Kyle P. Borja": "Mobile UI & CI/CD Pipeline",
+      "Elizer A. Ybañez": "Project Oversight & Manual QA",
+      "Kenneth Z. Piloton": "Relational Schema & ERD",
+      "Creishen Natasha C. Ayuman": "POS Logic & Inventory APIs"
     },
     "links": {
       "live": "#",
       "github": "#"
     },
-    "image": "/projects/erp-preview.png"
+    "image": "/Portfolio/Waresense/login.png",
+    "gallery": [
+      { "url": "/Portfolio/Waresense/login.png", "label": "Secure RBAC Entry", "category": "Administration & Governance" },
+      { "url": "/Portfolio/Waresense/admin dashboard.png", "label": "System Oversight Dashboard", "category": "Administration & Governance" },
+      { "url": "/Portfolio/Waresense/admin staff management.png", "label": "User Activity & Access Control", "category": "Administration & Governance" },
+      { "url": "/Portfolio/Waresense/admin.png", "label": "Global System Configuration", "category": "Administration & Governance" },
+      { "url": "/Portfolio/Waresense/darkmode.png", "label": "Personalized UI Settings", "category": "Administration & Governance" },
+      { "url": "/Portfolio/Waresense/driver account setting.png", "label": "User Profile Management", "category": "Administration & Governance" },
+      { "url": "/Portfolio/Waresense/admin inventory.png", "label": "Real-time Inventory Tracking", "category": "Inventory & Warehouse" },
+      { "url": "/Portfolio/Waresense/admin products.png", "label": "Product Metadata & Catalog", "category": "Inventory & Warehouse" },
+      { "url": "/Portfolio/Waresense/admin warehouse list.png", "label": "Multi-Warehouse Monitoring", "category": "Inventory & Warehouse" },
+      { "url": "/Portfolio/Waresense/admin edit, update restock prod.png", "label": "Inventory Audit & Restock Flow", "category": "Inventory & Warehouse" },
+      { "url": "/Portfolio/Waresense/admin list of suppliers.png", "label": "Supplier Database Management", "category": "Supply Chain & Procurement" },
+      { "url": "/Portfolio/Waresense/admin fund req.png", "label": "Procurement Request Flow", "category": "Supply Chain & Procurement" },
+      { "url": "/Portfolio/Waresense/admin fund req 1.png", "label": "PO Approval Workflow", "category": "Supply Chain & Procurement" },
+      { "url": "/Portfolio/Waresense/cashier dashboard.png", "label": "Real-time POS Terminal", "category": "Sales & POS" },
+      { "url": "/Portfolio/Waresense/admin transaction.png", "label": "Sales & Order History", "category": "Sales & POS" },
+      { "url": "/Portfolio/Waresense/cashier history.png", "label": "Cashier Session History", "category": "Sales & POS" },
+      { "url": "/Portfolio/Waresense/cashier voiding.png", "label": "Transaction Voiding", "category": "Sales & POS" },
+      { "url": "/Portfolio/Waresense/admin logistic overview.png", "label": "Fulfillment & Dispatch Workflow", "category": "Logistics & Delivery" },
+      { "url": "/Portfolio/Waresense/admin view delivery hotspotr.png", "label": "Route Optimization", "category": "Logistics & Delivery" },
+      { "url": "/Portfolio/Waresense/driver dashbaord.png", "label": "Driver Mobile Interface", "category": "Logistics & Delivery" },
+      { "url": "/Portfolio/Waresense/driver histort.png", "label": "Proof of Delivery Records", "category": "Logistics & Delivery" },
+      { "url": "/Portfolio/Waresense/admin finance page.png", "label": "Centralized Transaction Ledger", "category": "Finance & Accounting" }
+    ],
+    "features": {
+      "Inventory & Warehouse": [
+        "Multi-Warehouse Real-time Tracking",
+        "Admin Inventory Audit & Reconciliation Flow",
+        "Automated & Manual Restock Requests",
+        "Product SKU & Metadata Management"
+      ],
+      "Supply Chain & Procurement": [
+        "Supplier Database & Performance Tracking",
+        "Purchase Order (PO) Lifecycle Management",
+        "Procurement Approval Workflows"
+      ],
+      "Sales & POS": [
+        "Full-featured POS Terminal for Cashiers",
+        "Customer Order Lifecycle Management",
+        "Transaction Voiding & Correction"
+      ],
+      "Logistics & Delivery": [
+        "Fulfillment & Dispatch Workflow",
+        "Driver Mobile Interface with Navigation",
+        "Proof of Delivery (POD) Records",
+        "Delivery Fee Calculation & Routing"
+      ],
+      "Finance & Accounting": [
+        "Centralized Income & Expense Ledger",
+        "Employee Expense Request & Reimbursement Flow",
+        "Accounts Payable Tracking"
+      ],
+      "Admin & Security": [
+        "Fine-grained RBAC (Finance, Inventory, Admin Roles)",
+        "Forensic-level Audit Logging",
+        "Real-time Notification Engine for System Alerts"
+      ]
+    }
   },
   {
     "id": "alpha-interior",
     "title": "Alpha Interior",
     "description": "Portfolio page for a Bahrain-based workshop showcasing skills, artistry, and inquiry management.",
     "longDescription": "A visual-heavy portfolio for Alpha Interior, a workshop in Bahrain. The site focuses on high-quality gallery presentations of their craftsmanship and an integrated inquiry system that routes potential client requests directly to the administration for quoting.",
-    "techStack": ["Vite", "Framer Motion", "EmailJS"],
-    "team": ["Member 1", "Member 2", "Member 3", "Member 4"],
+    "techStack": ["ASP.NET Core", "Razor Pages", "Bootstrap 5", "reCAPTCHA", "JavaScript"],
+    "team": ["Kyle P. Borja", "Elizer A. Ybañez", "Kenneth Z. Piloton", "Creishen Natasha C. Ayuman"],
     "contributions": {
-      "Member 1": "Visual Layout & Animations",
-      "Member 2": "Gallery Implementation",
-      "Member 3": "Inquiry Form Logic",
-      "Member 4": "Asset Optimization"
+      "Kyle P. Borja": "Visual UI Design & Animations",
+      "Elizer A. Ybañez": "QA & Project Coordination",
+      "Kenneth Z. Piloton": "Asset Database Management",
+      "Creishen Natasha C. Ayuman": "Inquiry Form API Integration"
     },
     "links": {
       "live": "#",
       "github": "#"
     },
-    "image": "/projects/alpha-preview.png"
+    "image": "/Portfolio/AlphaInteriors/landing.png",
+    "gallery": [
+      { "url": "/Portfolio/AlphaInteriors/landing.png", "label": "Luxury Showcase Landing", "category": "Brand Presentation" },
+      { "url": "/Portfolio/AlphaInteriors/about.png", "label": "Brand Philosophy & Story", "category": "Brand Presentation" },
+      { "url": "/Portfolio/AlphaInteriors/services.png", "label": "Service Portfolio", "category": "Brand Presentation" },
+      { "url": "/Portfolio/AlphaInteriors/projects.png", "label": "Curated Project Gallery", "category": "Brand Presentation" },
+      { "url": "/Portfolio/AlphaInteriors/contact.png", "label": "Lead Generation & Inquiry Flow", "category": "Lead Gen & Communication" },
+      { "url": "/Portfolio/AlphaInteriors/clients.png", "label": "Responsive Partner Grid", "category": "Technical Performance" }
+    ],
+    "features": {
+      "Brand Presentation": [
+        "Luxury Hero Section with Dynamic Branding",
+        "Narrative-driven About Us Flow",
+        "Categorized Service Portfolio",
+        "High-resolution Project Gallery"
+      ],
+      "Interaction & Lead Gen": [
+        "Secure Service Inquiry Form",
+        "Google reCAPTCHA Spam Protection",
+        "Dynamic Feedback Modal System"
+      ],
+      "Technical & SEO": [
+        "Local Business Schema Markup",
+        "Social Media Open Graph Optimization",
+        "Automated SEO Sitemap & Robots handling"
+      ]
+    }
   },
   {
     "id": "flowstate",
     "title": "FlowState",
     "description": "Project management system for developers with Git integration and collaborative tracking.",
     "longDescription": "FlowState aids developer collaboration with a user-friendly UI for task tracking. It integrates directly with GitHub, allowing teams to manage organizations, repositories, and branches through CRUD operations within the app itself.",
-    "techStack": ["Next.js", "GitHub API", "Tailwind CSS", "Supabase"],
-    "team": ["Member 1", "Member 2", "Member 3", "Member 4"],
+    "techStack": ["React 19", ".NET 10", "Tailwind CSS 4", "SignalR", "GitHub API", "PostgreSQL"],
+    "team": ["Kyle P. Borja", "Elizer A. Ybañez", "Kenneth Z. Piloton", "Creishen Natasha C. Ayuman"],
     "contributions": {
-      "Member 1": "GitHub API Integration",
-      "Member 2": "Task Management UI",
-      "Member 3": "Auth & Organization Logic",
-      "Member 4": "Data Persistence & State"
+      "Kyle P. Borja": "GitHub Webhooks & UI Components",
+      "Elizer A. Ybañez": "Project Management & Testing",
+      "Kenneth Z. Piloton": "Supabase Schema & ERD",
+      "Creishen Natasha C. Ayuman": "API Authentication & Services"
     },
     "links": {
       "live": "#",
       "github": "#"
     },
-    "image": "/projects/flowstate-preview.png"
+    "image": "/projects/flowstate-preview.png",
+    "gallery": [],
+    "features": {
+      "Project & Task Management": [
+        "Kanban-style Task Tracking",
+        "Sprint Planning & Management",
+        "Multi-assignee Task Handling",
+        "Real-time Activity Ledgers"
+      ],
+      "Git & GitHub Integration": [
+        "Repository & Organization Sync",
+        "Commit & Pull Request Linkage to Tasks",
+        "GitHub Webhook Automated Updates"
+      ],
+      "Communication & Alerts": [
+        "Real-time In-app Notifications",
+        "Task Commenting & Attachment Support",
+        "Team-based Collaborative Workspaces"
+      ],
+      "Security & Performance": [
+        "JWT & RBAC Security Layers",
+        "Soft Deletion & Audit Tracking",
+        "SignalR Real-time Communication"
+      ]
+    }
   }
 ]

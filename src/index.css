@@ -2,13 +2,14 @@
 	/* Light Mode (Default) */
 	--bg-color: #ffffff;
 	--text-primary: #000000;
-	--text-secondary: #4a4a4a;
-	--accent-primary: #808080;
-	--accent-secondary: #333333;
-	--card-bg: rgba(0, 0, 0, 0.03);
-	--card-border: rgba(0, 0, 0, 0.08);
+	--text-secondary: #4b5563; /* Slate-600 */
+	--accent-primary: #0066cc; /* More vibrant blue for light mode */
+	--accent-secondary: #003366;
+	--card-bg: rgba(255, 255, 255, 0.7);
+	--card-border: rgba(0, 102, 204, 0.2);
 	--glass-blur: 12px;
-	--neon-shadow: rgba(0, 0, 0, 0.2);
+	--neon-shadow: 0 0 10px rgba(0, 102, 204, 0.1);
+	--circuit-color: rgba(0, 102, 204, 0.03);
 
 	--font-main:
 		"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
@@ -18,7 +19,7 @@
 [data-theme="dark"] {
 	--bg-color: #05070a;
 	--text-primary: #ffffff;
-	--text-secondary: #94a3b8;
+	--text-secondary: #cbd5e1;
 	--accent-primary: #0084ff; /* Electric Blue */
 	--accent-secondary: #001a33; /* Deep Navy */
 	--card-bg: rgba(0, 20, 40, 0.4);
@@ -70,6 +71,20 @@ body {
 	overflow-x: hidden;
 	line-height: 1.5;
 	-webkit-font-smoothing: antialiased;
+	position: relative;
+}
+
+body::after {
+	content: "";
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: url("https://grainy-gradients.vercel.app/noise.svg");
+	opacity: 0.05;
+	pointer-events: none;
+	z-index: 9999;
 }
 
 h1,
@@ -91,8 +106,8 @@ a {
 	-webkit-backdrop-filter: blur(var(--glass-blur));
 	border: 1px solid var(--card-border);
 	border-radius: 12px;
-	transition: all 0.3s ease;
-	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
 }
 
 .glass-card:hover {
@@ -130,9 +145,8 @@ a {
 	border-color: var(--accent-primary);
 }
 
-/* Custom Scrollbar */
 ::-webkit-scrollbar {
-	width: 8px;
+	width: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -140,30 +154,34 @@ a {
 }
 
 ::-webkit-scrollbar-thumb {
-	background: #333;
-	border-radius: 4px;
+	background: #555;
+	border-radius: 5px;
+	border: 2px solid var(--bg-color);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	background: #444;
+	background: var(--accent-primary);
+}
+
+.modal-content::-webkit-scrollbar {
+	width: 10px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+	background: var(--accent-primary);
+	border-radius: 5px;
+	border: 2px solid var(--bg-color);
 }
 
 .modal-grid {
+	display: grid;
 	grid-template-columns: 1.5fr 1fr;
+	gap: 60px;
 }
 
 .modal-content {
 	overflow-y: auto !important;
 	overscroll-behavior: contain;
-}
-
-.modal-content::-webkit-scrollbar {
-	width: 6px;
-}
-
-.modal-content::-webkit-scrollbar-thumb {
-	background: var(--accent-primary);
-	border-radius: 10px;
 }
 
 /* Utilities */

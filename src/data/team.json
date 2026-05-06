@@ -1,42 +1,38 @@
 [
   {
     "id": "dev1",
-    "name": "Member 1",
-    "role": "Frontend Architect",
-    "bio": "Specializes in creating immersive web experiences and complex UI architectures. Expert in React and 3D web rendering.",
-    "skills": ["React", "Three.js", "Framer Motion", "TypeScript"],
-    "github": "#",
-    "linkedin": "#",
-    "avatar": "/team/dev1.jpg"
+    "name": "Kyle P. Borja",
+    "role": "Deployment & UI Engineer",
+    "bio": "Specializes in modern deployment workflows, webhooks, and CI/CD pipelines, while maintaining a sharp focus on intuitive UI/UX design.",
+    "skills": ["Deployment", "Webhooks", "CI/CD", "React", "UI/UX"],
+    "github": "https://github.com/KyleBorja",
+    "linkedin": "#"
   },
   {
     "id": "dev2",
-    "name": "Member 2",
-    "role": "Backend Specialist",
-    "bio": "Focused on scalable APIs, authentication systems, and cloud infrastructure. Passionate about system performance.",
-    "skills": [".NET Core", "FastAPI", "PostgreSQL", "Azure"],
-    "github": "#",
-    "linkedin": "#",
-    "avatar": "/team/dev2.jpg"
+    "name": "Elizer A. Ybañez",
+    "role": "Project Manager & UI/QA",
+    "bio": "Oversees project lifecycles, manages team coordination, and ensures high quality through rigorous QA testing and UI refinement.",
+    "skills": ["Project Management", "UI Design", "QA Testing", "Team Leadership"],
+    "github": "https://github.com/elizerybanez01",
+    "linkedin": "#"
   },
   {
     "id": "dev3",
-    "name": "Member 3",
-    "role": "Database & Security",
-    "bio": "Ensuring data integrity and robust security protocols. Expert in database optimization and financial logic.",
-    "skills": ["SQL Server", "Supabase", "Redis", "OAuth"],
-    "github": "#",
-    "linkedin": "#",
-    "avatar": "/team/dev3.jpg"
+    "name": "Kenneth Z. Piloton",
+    "role": "Database Architect",
+    "bio": "Expert in designing robust database structures and Entity Relationship Diagrams (ERDs) to ensure data integrity and performance.",
+    "skills": ["Database Design", "ERD", "SQL", "Data Modeling"],
+    "github": "https://github.com/kurapika234",
+    "linkedin": "#"
   },
   {
     "id": "dev4",
-    "name": "Member 4",
-    "role": "Mobile & UI/UX",
-    "bio": "Bridging the gap between design and functionality. Expert in cross-platform mobile development and intuitive UX.",
-    "skills": ["React Native", "Flutter", "Figma", "UI Design"],
-    "github": "#",
-    "linkedin": "#",
-    "avatar": "/team/dev4.jpg"
+    "name": "Creishen Natasha C. Ayuman",
+    "role": "Backend Developer",
+    "bio": "Focused on building scalable backend APIs and essential services that power complex web applications.",
+    "skills": ["Backend APIs", "Services", "Node.js", "System Architecture"],
+    "github": "https://github.com/creishen",
+    "linkedin": "#"
   }
 ]

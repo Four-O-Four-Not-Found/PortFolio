@@ -6,9 +6,10 @@ interface MagneticButtonProps {
   className?: string;
   onClick?: () => void;
   strength?: number;
+  type?: "button" | "submit" | "reset";
 }
 
-const MagneticButton = ({ children, className = '', onClick, strength = 0.5 }: MagneticButtonProps) => {
+const MagneticButton = ({ children, className = '', onClick, strength = 0.5, type = "button" }: MagneticButtonProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
@@ -39,7 +40,7 @@ const MagneticButton = ({ children, className = '', onClick, strength = 0.5 }: M
       className={`magnetic-wrapper ${className}`}
       style={{ display: 'inline-block' }}
     >
-      <button className="btn-primary" onClick={onClick}>
+      <button className="btn-primary" onClick={onClick} type={type}>
         {children}
       </button>
     </motion.div>

@@ -87,7 +87,11 @@ const Navbar = () => {
 						animate={{ opacity: 1, scale: 1 }}
 						transition={{ delay: 0.4 }}
 					>
-						<MagneticButton strength={0.2} className="nav-cta">
+						<MagneticButton 
+							strength={0.2} 
+							className="nav-cta"
+							onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+						>
 							Get in Touch
 						</MagneticButton>
 					</motion.li>

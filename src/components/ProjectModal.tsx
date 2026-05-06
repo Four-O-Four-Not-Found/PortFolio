@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Shield, Code, Database, Layout, ChevronLeft, ArrowUp } from "lucide-react";
+import { X, Layout, ChevronLeft, ArrowUp } from "lucide-react";
 
 interface Project {
 	id: string;

@@ -44,23 +44,24 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
 		}
 	}, [isOpen, project?.id]);
 
-	const allImages = project 
-		? Array.from(new Set([project.image, ...(project.gallery?.map(g => g.url) || [])]))
-		: [];
+	const slides = project ? [
+		{ url: project.image, label: "Project Overview" },
+		...(project.gallery?.map(g => ({ url: g.url, label: g.label })) || [])
+	].filter((v, i, a) => a.findIndex(t => t.url === v.url) === i) : [];
 
-	const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % allImages.length);
-	const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + allImages.length) % allImages.length);
+	const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
+	const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
 
 	// Auto-play logic
 	useEffect(() => {
-		if (!isOpen || isPaused || allImages.length <= 1) return;
+		if (!isOpen || isPaused || slides.length <= 1) return;
 		
 		const timer = setInterval(() => {
 			nextSlide();
 		}, 5000);
 
 		return () => clearInterval(timer);
-	}, [isOpen, isPaused, allImages.length, nextSlide]);
+	}, [isOpen, isPaused, slides.length, nextSlide]);
 
 	const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
 		const target = e.currentTarget;
@@ -204,7 +205,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
 										<div style={{ 
 											position: "absolute", 
 											inset: 0, 
-											backgroundImage: `url(${allImages[currentSlide]})`, 
+											backgroundImage: `url(${slides[currentSlide].url})`, 
 											backgroundSize: "cover", 
 											backgroundPosition: "center",
 											filter: "blur(40px) brightness(0.3)",
@@ -212,36 +213,70 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
 										}} />
 
 										<AnimatePresence mode="wait">
-											<motion.img
+											<motion.div
 												key={currentSlide}
-												src={allImages[currentSlide]}
 												initial={{ opacity: 0, scale: 0.95 }}
 												animate={{ opacity: 1, scale: 1 }}
 												exit={{ opacity: 0, scale: 1.05 }}
 												transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-												drag="x"
-												dragConstraints={{ left: 0, right: 0 }}
-												onDragEnd={(_, info) => {
-													if (info.offset.x > 100) prevSlide();
-													else if (info.offset.x < -100) nextSlide();
-												}}
-												alt={`${project.title} view ${currentSlide + 1}`}
 												style={{ 
-													maxWidth: "100%", 
-													maxHeight: "100%", 
-													objectFit: "contain",
+													width: "100%", 
+													height: "100%", 
+													display: "flex", 
+													flexDirection: "column",
+													alignItems: "center", 
+													justifyContent: "center",
 													position: "relative",
-													zIndex: 2,
-													cursor: "grab",
-													padding: "40px"
+													zIndex: 2
 												}}
-												whileTap={{ cursor: "grabbing" }}
-												onClick={() => setSelectedImage(allImages[currentSlide])}
-											/>
+											>
+												<motion.img
+													src={slides[currentSlide].url}
+													drag="x"
+													dragConstraints={{ left: 0, right: 0 }}
+													onDragEnd={(_, info) => {
+														if (info.offset.x > 100) prevSlide();
+														else if (info.offset.x < -100) nextSlide();
+													}}
+													alt={`${project.title} view ${currentSlide + 1}`}
+													style={{ 
+														maxWidth: "100%", 
+														maxHeight: "100%", 
+														objectFit: "contain",
+														cursor: "grab",
+														padding: "40px"
+													}}
+													whileTap={{ cursor: "grabbing" }}
+													onClick={() => setSelectedImage(slides[currentSlide].url)}
+												/>
+
+												{/* Image Label Overlay */}
+												<div style={{
+													position: "absolute",
+													bottom: "40px",
+													left: "50%",
+													transform: "translateX(-50%)",
+													background: "rgba(0, 132, 255, 0.15)",
+													border: "1px solid rgba(0, 132, 255, 0.3)",
+													padding: "8px 20px",
+													borderRadius: "20px",
+													color: "white",
+													fontSize: "0.9rem",
+													fontWeight: "600",
+													letterSpacing: "1px",
+													textTransform: "uppercase",
+													backdropFilter: "blur(10px)",
+													boxShadow: "0 5px 15px rgba(0,0,0,0.3)",
+													pointerEvents: "none",
+													zIndex: 10
+												}}>
+													{slides[currentSlide].label}
+												</div>
+											</motion.div>
 										</AnimatePresence>
 
 										{/* Slideshow Controls */}
-										{allImages.length > 1 && (
+										{slides.length > 1 && (
 											<>
 												<button
 													onClick={(e) => { e.stopPropagation(); prevSlide(); }}
@@ -300,15 +335,17 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
 													gap: "8px",
 													zIndex: 10
 												}}>
-													{allImages.map((_, i) => (
+													{slides.map((_, i) => (
 														<div
 															key={i}
+															onClick={(e) => { e.stopPropagation(); setCurrentSlide(i); }}
 															style={{
 																width: i === currentSlide ? "24px" : "8px",
 																height: "4px",
 																borderRadius: "2px",
 																background: i === currentSlide ? "var(--accent-primary)" : "rgba(255,255,255,0.3)",
-																transition: "all 0.3s ease"
+																transition: "all 0.3s ease",
+																cursor: "pointer"
 															}}
 														/>
 													))}
